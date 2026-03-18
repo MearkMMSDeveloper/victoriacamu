@@ -32,7 +32,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="mb-4">
-              <img src={camuLogo} alt="Camu ERP" className="h-10 w-auto brightness-0 invert" />
+              <img src={camuLogo} alt="Camu ERP" className="h-14 w-auto brightness-0 invert" />
             </div>
             <p className="text-sm leading-relaxed opacity-60 max-w-md mb-6">
               One Platform. Every School. Every Student. Every Story. Victorian DE Panel SSP001 Approved.
