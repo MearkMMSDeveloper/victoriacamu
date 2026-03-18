@@ -42,7 +42,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img src={camuLogo} alt="Camu ERP" className="h-12 md:h-14 w-auto" />
+          <img src={camuLogo} alt="Camu ERP" className="h-9 sm:h-12 md:h-16 lg:h-20 w-auto" />
         </Link>
 
         {/* Desktop Nav */}
