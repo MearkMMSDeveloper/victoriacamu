@@ -1,13 +1,105 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Send, CheckCircle } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Send, CheckCircle, Search } from "lucide-react";
+import { schools, getSchoolSize, type School } from "@/data/schools";
+import PageHero from "@/components/PageHero";
+import heroContact from "@/assets/hero-contact.jpg";
 
 const states = ["VIC", "NSW", "QLD", "SA", "WA", "TAS", "ACT", "NT", "NZ"];
 const roles = ["Principal", "Deputy Principal", "Business Manager", "ICT Coordinator", "Teacher", "Admin Staff", "Other"];
 const sizes = ["Small (Under 300)", "Medium (300–800)", "Large (800+)"];
 
 const Contact = () => {
+  const location = useLocation();
   const [submitted, setSubmitted] = useState(false);
+
+  // Form state
+  const [schoolName, setSchoolName] = useState("");
+  const [schoolSize, setSchoolSize] = useState("");
+  const [schoolState, setSchoolState] = useState("");
+
+  // School search in form
+  const [searchResults, setSearchResults] = useState<School[]>([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Auto-fill from navigation state
+  useEffect(() => {
+    const state = location.state as { schoolName?: string; schoolSize?: string; schoolState?: string } | null;
+    if (state) {
+      if (state.schoolName) setSchoolName(state.schoolName);
+      if (state.schoolSize) {
+        const sizeMap: Record<string, string> = {
+          "Small": "Small (Under 300)",
+          "Medium": "Medium (300–800)",
+          "Large": "Large (800+)",
+        };
+        setSchoolSize(sizeMap[state.schoolSize] || state.schoolSize);
+      }
+      if (state.schoolState) setSchoolState(state.schoolState);
+    }
+  }, [location.state]);
+
+  // School name search
+  const handleSchoolSearch = useCallback((value: string) => {
+    setSchoolName(value);
+    if (value.length < 3) {
+      setSearchResults([]);
+      setShowDropdown(false);
+      return;
+    }
+    const lower = value.toLowerCase();
+    const matched = schools.filter((s) => s.name.toLowerCase().includes(lower)).slice(0, 8);
+    setSearchResults(matched);
+    setShowDropdown(matched.length > 0);
+    setActiveIndex(-1);
+  }, []);
+
+  const selectSchool = (school: School) => {
+    setSchoolName(school.name);
+    setSchoolState(school.state);
+    const sizeInfo = getSchoolSize(school.students);
+    const sizeMap: Record<string, string> = {
+      "Small": "Small (Under 300)",
+      "Medium": "Medium (300–800)",
+      "Large": "Large (800+)",
+    };
+    setSchoolSize(sizeMap[sizeInfo.label] || "");
+    setShowDropdown(false);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveIndex((i) => Math.min(i + 1, searchResults.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveIndex((i) => Math.max(i - 1, 0));
+    } else if (e.key === "Enter" && activeIndex >= 0) {
+      e.preventDefault();
+      selectSchool(searchResults[activeIndex]);
+    } else if (e.key === "Escape") {
+      setShowDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node) &&
+        inputRef.current &&
+        !inputRef.current.contains(e.target as Node)
+      ) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,20 +108,12 @@ const Contact = () => {
 
   return (
     <>
-      <section className="bg-foreground pt-32 pb-20 section-padding relative overflow-hidden">
-        <div className="absolute inset-0" style={{
-          background: "radial-gradient(ellipse at 50% 50%, hsl(var(--gold) / 0.1) 0%, transparent 50%)"
-        }} />
-        <div className="relative max-w-4xl mx-auto">
-          <p className="section-label">Register</p>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-background leading-[1.06] tracking-tight mb-6">
-            Register Your Interest
-          </h1>
-          <p className="text-lg leading-relaxed max-w-2xl" style={{ color: "hsl(0 0% 100% / 0.65)" }}>
-            Whether you're in Victoria on the DE panel or anywhere across Australia & New Zealand — register and receive a tailored proposal within 2 business days.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        label="Register"
+        title="Register Your Interest"
+        description="Whether you're in Victoria on the DE panel or anywhere across Australia & New Zealand — register and receive a tailored proposal within 2 business days."
+        image={heroContact}
+      />
 
       <section className="section-padding">
         <div className="max-w-3xl mx-auto">
@@ -48,15 +132,57 @@ const Contact = () => {
                   <label className="block text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-2">Full Name *</label>
                   <input required type="text" className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:border-primary transition-colors" placeholder="Your full name" />
                 </div>
-                <div>
+                <div className="relative">
                   <label className="block text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-2">School Name *</label>
-                  <input required type="text" className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:border-primary transition-colors" placeholder="Your school name" />
+                  <div className="relative">
+                    <input
+                      ref={inputRef}
+                      required
+                      type="text"
+                      value={schoolName}
+                      onChange={(e) => handleSchoolSearch(e.target.value)}
+                      onKeyDown={handleKeyDown}
+                      onFocus={() => schoolName.length >= 3 && searchResults.length > 0 && setShowDropdown(true)}
+                      className="w-full px-4 py-3 pr-10 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:border-primary transition-colors"
+                      placeholder="Start typing school name..."
+                      autoComplete="off"
+                    />
+                    <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  </div>
+                  <AnimatePresence>
+                    {showDropdown && (
+                      <motion.div
+                        ref={dropdownRef}
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        className="absolute top-full left-0 right-0 bg-card border border-border rounded-b-xl overflow-hidden z-50 mt-0"
+                        style={{ boxShadow: "var(--shadow-elevated)" }}
+                      >
+                        {searchResults.map((school, i) => (
+                          <button
+                            key={`${school.name}-${school.state}-${i}`}
+                            type="button"
+                            onClick={() => selectSchool(school)}
+                            className={`w-full text-left px-4 py-2.5 flex items-center justify-between transition-colors text-sm ${
+                              i === activeIndex ? "bg-accent" : "hover:bg-muted"
+                            }`}
+                          >
+                            <span className="text-foreground">{school.name}</span>
+                            <span className="text-xs font-semibold text-muted-foreground">{school.state}</span>
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
                 <div>
                   <label className="block text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-2">Your Role *</label>
                   <select required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:border-primary transition-colors">
                     <option value="">Select your role</option>
-                    {roles.map(r => <option key={r} value={r}>{r}</option>)}
+                    {roles.map((r) => (
+                      <option key={r} value={r}>{r}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -69,16 +195,30 @@ const Contact = () => {
                 </div>
                 <div>
                   <label className="block text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-2">School Size *</label>
-                  <select required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:border-primary transition-colors">
+                  <select
+                    required
+                    value={schoolSize}
+                    onChange={(e) => setSchoolSize(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:border-primary transition-colors"
+                  >
                     <option value="">Select size</option>
-                    {sizes.map(s => <option key={s} value={s}>{s}</option>)}
+                    {sizes.map((s) => (
+                      <option key={s} value={s}>{s}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
                   <label className="block text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-2">State / Territory *</label>
-                  <select required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:border-primary transition-colors">
+                  <select
+                    required
+                    value={schoolState}
+                    onChange={(e) => setSchoolState(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:border-primary transition-colors"
+                  >
                     <option value="">Select state</option>
-                    {states.map(s => <option key={s} value={s}>{s}</option>)}
+                    {states.map((s) => (
+                      <option key={s} value={s}>{s}</option>
+                    ))}
                   </select>
                 </div>
               </div>

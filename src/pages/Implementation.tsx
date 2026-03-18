@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import SchoolSearch from "@/components/SchoolSearch";
+import PageHero from "@/components/PageHero";
+import heroImpl from "@/assets/hero-implementation.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -59,20 +61,12 @@ const included = [
 const Implementation = () => {
   return (
     <>
-      <section className="bg-foreground pt-32 pb-20 section-padding relative overflow-hidden">
-        <div className="absolute inset-0" style={{
-          background: "radial-gradient(ellipse at 40% 50%, hsl(var(--teal) / 0.1) 0%, transparent 50%)"
-        }} />
-        <div className="relative max-w-4xl mx-auto">
-          <p className="section-label">Implementation</p>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-background leading-[1.06] tracking-tight mb-6">
-            Simple & Scalable ERP Implementation for Schools
-          </h1>
-          <p className="text-lg leading-relaxed max-w-2xl" style={{ color: "hsl(0 0% 100% / 0.65)" }}>
-            Tailored to your school's size and configuration. Minimise disruption and maximise adoption from day one.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        label="Implementation"
+        title="Simple & Scalable ERP Implementation for Schools"
+        description="Tailored to your school's size and configuration. Minimise disruption and maximise adoption from day one."
+        image={heroImpl}
+      />
 
       {/* Timeline Plans */}
       <section className="section-padding">
@@ -83,13 +77,20 @@ const Implementation = () => {
             {plans.map((plan, idx) => (
               <motion.div
                 key={plan.size}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
                 viewport={{ once: true }}
                 className="card-premium relative overflow-hidden"
               >
-                <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
+                <motion.div
+                  className="absolute top-0 left-0 right-0 h-1 bg-primary"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  transition={{ duration: 0.8, delay: idx * 0.2 }}
+                  viewport={{ once: true }}
+                  style={{ transformOrigin: "left" }}
+                />
                 <p className="font-serif text-xl font-bold mb-1">{plan.size}</p>
                 <p className="text-xs text-muted-foreground mb-1">{plan.students}</p>
                 <p className="font-mono text-2xl font-bold text-primary mb-6">{plan.timeline}</p>
@@ -97,11 +98,18 @@ const Implementation = () => {
                 <div className="relative pl-6">
                   <div className="absolute left-2 top-2 bottom-2 w-px border-l-2 border-dashed" style={{ borderColor: "hsl(var(--gold) / 0.3)" }} />
                   {plan.steps.map((step, i) => (
-                    <div key={i} className="relative pb-5 last:pb-0">
+                    <motion.div
+                      key={i}
+                      className="relative pb-5 last:pb-0"
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: i * 0.1 }}
+                      viewport={{ once: true }}
+                    >
                       <div className="absolute left-[-18px] top-1 w-3 h-3 rounded-full bg-primary border-2 border-card" />
                       <p className="text-xs font-mono text-muted-foreground mb-0.5">{step.week}</p>
                       <p className="text-sm font-semibold text-foreground">{step.label}</p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>

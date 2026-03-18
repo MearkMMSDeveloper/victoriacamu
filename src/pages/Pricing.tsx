@@ -1,29 +1,18 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
+import PageHero from "@/components/PageHero";
+import heroPricing from "@/assets/hero-pricing.jpg";
 
 const Pricing = () => {
   return (
     <>
-      <section className="bg-foreground pt-32 pb-20 section-padding relative overflow-hidden">
-        <div className="absolute inset-0" style={{
-          background: "radial-gradient(ellipse at 50% 50%, hsl(var(--gold) / 0.1) 0%, transparent 50%)"
-        }} />
-        <div className="relative max-w-4xl mx-auto">
-          <p className="section-label">Pricing</p>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-background leading-[1.06] tracking-tight mb-6">
-            Flexible Pricing for Schools of All Sizes
-          </h1>
-          <p className="text-lg leading-relaxed max-w-2xl" style={{ color: "hsl(0 0% 100% / 0.65)" }}>
-            Custom pricing tailored to your school's size, modules, and requirements. No hidden fees, no surprises.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        label="Pricing"
+        title="Flexible Pricing for Schools of All Sizes"
+        description="Custom pricing tailored to your school's size, modules, and requirements. No hidden fees, no surprises."
+        image={heroPricing}
+      />
 
       <section className="section-padding">
         <div className="max-w-5xl mx-auto">
@@ -31,9 +20,9 @@ const Pricing = () => {
             {["Small", "Medium", "Large"].map((size, i) => (
               <motion.div
                 key={size}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
                 viewport={{ once: true }}
                 className={`card-premium relative overflow-hidden ${i === 1 ? "border-primary border-2" : ""}`}
               >
