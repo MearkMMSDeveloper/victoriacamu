@@ -39,10 +39,10 @@ const Navbar = () => {
           : "border-border/50"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 min-h-[80px] md:min-h-[100px]">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <img src={camuLogo} alt="Camu ERP" className="h-9 sm:h-12 md:h-16 lg:h-20 w-auto" />
+        <Link to="/" className="flex items-center mr-5">
+          <img src={camuLogo} alt="Camu ERP" className="h-[45px] sm:h-[55px] md:h-[80px] lg:h-[100px] w-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)]" />
         </Link>
 
         {/* Desktop Nav */}
