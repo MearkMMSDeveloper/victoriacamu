@@ -2,9 +2,10 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, MapPin, Users, Clock, ArrowRight } from "lucide-react";
 import { schools, getSchoolSize, type School } from "@/data/schools";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SchoolSearch = () => {
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<School[]>([]);
   const [selected, setSelected] = useState<School | null>(null);
@@ -14,20 +15,32 @@ const SchoolSearch = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const search = useCallback((q: string) => {
-    if (q.length < 3) { setResults([]); setShowDropdown(false); return; }
+    if (q.length < 3) {
+      setResults([]);
+      setShowDropdown(false);
+      return;
+    }
     const lower = q.toLowerCase();
-    const matched = schools.filter(s => s.name.toLowerCase().includes(lower)).slice(0, 10);
+    const matched = schools
+      .filter((s) => s.name.toLowerCase().includes(lower))
+      .slice(0, 10);
     setResults(matched);
     setShowDropdown(matched.length > 0);
     setActiveIndex(-1);
   }, []);
 
-  useEffect(() => { search(query); }, [query, search]);
+  useEffect(() => {
+    search(query);
+  }, [query, search]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node) &&
-          inputRef.current && !inputRef.current.contains(e.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node) &&
+        inputRef.current &&
+        !inputRef.current.contains(e.target as Node)
+      ) {
         setShowDropdown(false);
       }
     };
@@ -38,10 +51,10 @@ const SchoolSearch = () => {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      setActiveIndex(i => Math.min(i + 1, results.length - 1));
+      setActiveIndex((i) => Math.min(i + 1, results.length - 1));
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
-      setActiveIndex(i => Math.max(i - 1, 0));
+      setActiveIndex((i) => Math.max(i - 1, 0));
     } else if (e.key === "Enter" && activeIndex >= 0) {
       e.preventDefault();
       selectSchool(results[activeIndex]);
@@ -63,13 +76,27 @@ const SchoolSearch = () => {
     return (
       <>
         {text.slice(0, idx)}
-        <span className="font-bold text-primary">{text.slice(idx, idx + query.length)}</span>
+        <span className="font-bold text-primary">
+          {text.slice(idx, idx + query.length)}
+        </span>
         {text.slice(idx + query.length)}
       </>
     );
   };
 
   const sizeInfo = selected ? getSchoolSize(selected.students) : null;
+
+  const handleRegisterInterest = () => {
+    if (selected && sizeInfo) {
+      navigate("/contact", {
+        state: {
+          schoolName: selected.name,
+          schoolSize: sizeInfo.label,
+          schoolState: selected.state,
+        },
+      });
+    }
+  };
 
   return (
     <section className="section-padding bg-card relative">
@@ -79,7 +106,8 @@ const SchoolSearch = () => {
           Implementation That Starts with Your School's Name
         </h2>
         <p className="section-subtitle mb-10">
-          Search from over 2,300 schools across Australia and New Zealand. We'll show your personalised implementation timeline.
+          Search from over 2,300 schools across Australia and New Zealand. We'll
+          show your personalised implementation timeline.
         </p>
 
         {/* Search Input */}
@@ -90,9 +118,16 @@ const SchoolSearch = () => {
               ref={inputRef}
               type="text"
               value={query}
-              onChange={(e) => { setQuery(e.target.value); setSelected(null); }}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setSelected(null);
+              }}
               onKeyDown={handleKeyDown}
-              onFocus={() => query.length >= 3 && results.length > 0 && setShowDropdown(true)}
+              onFocus={() =>
+                query.length >= 3 &&
+                results.length > 0 &&
+                setShowDropdown(true)
+              }
               placeholder="Type your school name (e.g. Melbourne Grammar)..."
               className="w-full h-16 text-lg md:text-xl bg-transparent outline-none text-foreground placeholder:text-muted-foreground/50 font-sans"
               aria-label="Search for your school"
@@ -119,13 +154,23 @@ const SchoolSearch = () => {
                       i === activeIndex ? "bg-accent" : "hover:bg-muted"
                     }`}
                   >
-                    <span className="text-sm text-foreground">{highlightMatch(school.name)}</span>
-                    <span className="text-xs font-semibold text-muted-foreground tracking-wider">{school.state}</span>
+                    <span className="text-sm text-foreground">
+                      {highlightMatch(school.name)}
+                    </span>
+                    <span className="text-xs font-semibold text-muted-foreground tracking-wider">
+                      {school.state}
+                    </span>
                   </button>
                 ))}
                 {results.length === 0 && query.length >= 3 && (
                   <div className="px-5 py-4 text-sm text-muted-foreground">
-                    No schools found. <Link to="/contact" className="text-primary hover:underline">Register your school manually</Link>
+                    No schools found.{" "}
+                    <button
+                      onClick={() => navigate("/contact")}
+                      className="text-primary hover:underline"
+                    >
+                      Register your school manually
+                    </button>
                   </div>
                 )}
               </motion.div>
@@ -148,9 +193,15 @@ const SchoolSearch = () => {
                     <MapPin className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">School</p>
-                    <p className="font-semibold text-foreground">{selected.name}</p>
-                    <p className="text-sm text-muted-foreground">{selected.state}</p>
+                    <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">
+                      School
+                    </p>
+                    <p className="font-semibold text-foreground">
+                      {selected.name}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {selected.state}
+                    </p>
                   </div>
                 </div>
 
@@ -159,9 +210,15 @@ const SchoolSearch = () => {
                     <Users className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">School Size</p>
-                    <p className="font-semibold text-foreground">{sizeInfo.label}</p>
-                    <p className="text-sm text-muted-foreground font-mono">{selected.students.toLocaleString()} students</p>
+                    <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">
+                      School Size
+                    </p>
+                    <p className="font-semibold text-foreground">
+                      {sizeInfo.label}
+                    </p>
+                    <p className="text-sm text-muted-foreground font-mono">
+                      {selected.students.toLocaleString()} students
+                    </p>
                   </div>
                 </div>
 
@@ -170,20 +227,29 @@ const SchoolSearch = () => {
                     <Clock className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">Timeline</p>
-                    <p className="font-semibold text-foreground">{sizeInfo.timeline}</p>
-                    <p className="text-sm text-muted-foreground">Estimated deployment</p>
+                    <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">
+                      Timeline
+                    </p>
+                    <p className="font-semibold text-foreground">
+                      {sizeInfo.timeline}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Estimated deployment
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-6 pt-6 border-t border-border flex flex-col sm:flex-row gap-3">
-                <Link to="/contact" className="btn-gold">
-                  Show My Plan <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-                <Link to="/implementation" className="btn-outline">
+                <button onClick={handleRegisterInterest} className="btn-gold">
+                  Register Interest <ArrowRight className="ml-2 w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => navigate("/implementation")}
+                  className="btn-outline"
+                >
                   View Full Timeline
-                </Link>
+                </button>
               </div>
             </motion.div>
           )}

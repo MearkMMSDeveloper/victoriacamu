@@ -1,36 +1,39 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Target, Eye, Globe, CheckCircle } from "lucide-react";
+import { ArrowRight, Target, Eye, CheckCircle } from "lucide-react";
+import PageHero from "@/components/PageHero";
+import heroAbout from "@/assets/hero-about.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
+const slideInLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
+};
+
+const slideInRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
+};
+
 const About = () => {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-foreground pt-32 pb-20 section-padding relative overflow-hidden">
-        <div className="absolute inset-0" style={{
-          background: "radial-gradient(ellipse at 30% 40%, hsl(var(--teal) / 0.1) 0%, transparent 50%)"
-        }} />
-        <div className="relative max-w-4xl mx-auto">
-          <p className="section-label">About Us</p>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-background leading-[1.06] tracking-tight mb-6">
-            About Camu ERP — Campus + You
-          </h1>
-          <p className="text-lg leading-relaxed max-w-2xl" style={{ color: "hsl(0 0% 100% / 0.65)" }}>
-            Camu is where Campus meets You. A fully integrated school ERP platform connecting every stakeholder in one ecosystem.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        label="About Us"
+        title="About Camu ERP — Campus + You"
+        description="Camu is where Campus meets You. A fully integrated school ERP platform connecting every stakeholder in one ecosystem."
+        image={heroAbout}
+      />
 
       {/* What is Camu */}
       <section className="section-padding">
         <div className="max-w-6xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <motion.div variants={slideInLeft} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <p className="section-label">What is Camu ERP</p>
               <h2 className="section-title">The Operating System for ANZ Education</h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
@@ -39,8 +42,8 @@ const About = () => {
               <p className="text-muted-foreground leading-relaxed">
                 Built by SRM Technologies Australia, Camu is listed on the Victorian Department of Education School Software Panel (SSP001) across all four procurement categories — enabling streamlined, pre-approved procurement for government schools.
               </p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
+            </motion.div>
+            <motion.div variants={slideInRight} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-2 gap-4">
               {[
                 { num: "2,200+", label: "Schools Addressable" },
                 { num: "1", label: "Integrated Solution" },
@@ -52,8 +55,8 @@ const About = () => {
                   <p className="text-xs text-muted-foreground tracking-wider uppercase">{stat.label}</p>
                 </div>
               ))}
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -94,8 +97,13 @@ const About = () => {
               "ISO 27001 certified with data hosted exclusively in Australia",
               "Child-safe design principles embedded in every workflow",
               "Dedicated implementation support with 12-month hypercare",
-            ].map((item) => (
-              <motion.div key={item} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
+            ].map((item, i) => (
+              <motion.div
+                key={item}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                viewport={{ once: true }}
                 className="flex items-start gap-3 p-4 rounded-xl hover:bg-muted transition-colors"
               >
                 <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />

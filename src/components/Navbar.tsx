@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import camuLogo from "@/assets/camu-logo.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -32,21 +33,16 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-card border-b ${
         scrolled
-          ? "bg-card/95 backdrop-blur-xl border-b border-border shadow-sm"
-          : "bg-transparent"
+          ? "border-border shadow-sm"
+          : "border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Logo */}
-        <Link to="/" className="flex flex-col gap-0.5">
-          <span className="font-serif text-xl font-bold tracking-tight text-foreground">
-            Camu<span className="text-primary">.</span>
-          </span>
-          <span className="text-[0.6rem] tracking-[0.18em] uppercase font-semibold text-primary">
-            School ERP
-          </span>
+        <Link to="/" className="flex items-center gap-2">
+          <img src={camuLogo} alt="Camu ERP" className="h-10 w-auto" />
         </Link>
 
         {/* Desktop Nav */}

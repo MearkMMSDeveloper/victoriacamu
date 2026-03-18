@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Users, ClipboardCheck, CreditCard, MessageSquare, BookOpen, Shield, Calendar, BarChart3, FileText, Bell, Laptop } from "lucide-react";
+import PageHero from "@/components/PageHero";
+import heroFeatures from "@/assets/hero-features.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -79,34 +81,26 @@ const features = [
 const Features = () => {
   return (
     <>
-      <section className="bg-foreground pt-32 pb-20 section-padding relative overflow-hidden">
-        <div className="absolute inset-0" style={{
-          background: "radial-gradient(ellipse at 70% 30%, hsl(var(--gold) / 0.12) 0%, transparent 50%)"
-        }} />
-        <div className="relative max-w-4xl mx-auto">
-          <p className="section-label">Capabilities</p>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-background leading-[1.06] tracking-tight mb-6">
-            Complete School ERP Features for Modern Institutions
-          </h1>
-          <p className="text-lg leading-relaxed max-w-2xl" style={{ color: "hsl(0 0% 100% / 0.65)" }}>
-            Everything your school needs in one platform — from student records to payments, from attendance to analytics.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        label="Capabilities"
+        title="Complete School ERP Features for Modern Institutions"
+        description="Everything your school needs in one platform — from student records to payments, from attendance to analytics."
+        image={heroFeatures}
+      />
 
       <section className="section-padding">
         <div className="max-w-7xl mx-auto space-y-8">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.05 }}
               viewport={{ once: true }}
-              className="card-premium grid md:grid-cols-[1fr,1.2fr] gap-8 items-center"
+              className="card-premium grid md:grid-cols-[1fr,1.2fr] gap-8 items-center group hover:border-primary/20 transition-colors"
             >
               <div>
-                <div className="w-12 h-12 rounded-xl bg-teal-light flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-xl bg-teal-light flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <f.icon className="w-6 h-6 text-secondary" />
                 </div>
                 <h3 className="font-serif text-2xl font-bold mb-3 text-foreground">{f.title}</h3>

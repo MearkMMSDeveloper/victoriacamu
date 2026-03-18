@@ -2,6 +2,9 @@ import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Play, ChevronLeft, ChevronRight } from "lucide-react";
+import heroHome1 from "@/assets/hero-home-1.jpg";
+import heroHome2 from "@/assets/hero-home-2.jpg";
+import heroHome3 from "@/assets/hero-home-3.jpg";
 
 const slides = [
   {
@@ -18,6 +21,7 @@ const slides = [
       { num: "1", label: "Integrated Platform" },
       { num: "5", label: "User Personas" },
     ],
+    image: heroHome1,
   },
   {
     label: "Problem & Solution",
@@ -32,6 +36,7 @@ const slides = [
       { num: "75%", label: "Faster Parent Comms" },
       { num: "68%", label: "Report Card Automation" },
     ],
+    image: heroHome2,
   },
   {
     label: "Trust & Coverage",
@@ -46,6 +51,7 @@ const slides = [
       { num: "4", label: "DE Panel Categories" },
       { num: "ISO", label: "27001 Certified" },
     ],
+    image: heroHome3,
   },
 ];
 
@@ -64,19 +70,50 @@ const HeroSlider = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-foreground">
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(hsl(var(--gold)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--gold)) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        />
-        <div className="absolute inset-0" style={{
-          background: "radial-gradient(ellipse at 65% 30%, hsl(var(--gold) / 0.12) 0%, transparent 55%), radial-gradient(ellipse at 15% 70%, hsl(var(--teal) / 0.1) 0%, transparent 50%)"
-        }} />
+      {/* Background Image */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0"
+        >
+          <img
+            src={slide.image}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-foreground/65" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(135deg, hsl(var(--navy) / 0.5) 0%, transparent 60%), radial-gradient(ellipse at 65% 30%, hsl(var(--gold) / 0.1) 0%, transparent 50%)",
+            }}
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Floating particles */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1.5 h-1.5 rounded-full bg-primary/20"
+            style={{ left: `${10 + i * 11}%`, top: `${15 + (i % 4) * 20}%` }}
+            animate={{
+              y: [-15, 15, -15],
+              opacity: [0.2, 0.6, 0.2],
+            }}
+            transition={{
+              duration: 4 + i * 0.7,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-28 pb-20 w-full">
@@ -90,7 +127,8 @@ const HeroSlider = () => {
             className="max-w-2xl"
           >
             {/* Pill */}
-            <div className="inline-flex items-center gap-2 border rounded-full px-4 py-1.5 mb-8"
+            <div
+              className="inline-flex items-center gap-2 border rounded-full px-4 py-1.5 mb-8"
               style={{
                 background: "hsl(var(--gold) / 0.1)",
                 borderColor: "hsl(var(--gold) / 0.25)",
@@ -98,7 +136,9 @@ const HeroSlider = () => {
               }}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              <span className="text-xs font-bold tracking-[0.14em] uppercase">{slide.label}</span>
+              <span className="text-xs font-bold tracking-[0.14em] uppercase">
+                {slide.label}
+              </span>
             </div>
 
             {/* Heading */}
@@ -107,7 +147,10 @@ const HeroSlider = () => {
             </h1>
 
             {/* Description */}
-            <p className="text-base md:text-lg leading-relaxed mb-8 max-w-xl" style={{ color: "hsl(0 0% 100% / 0.65)" }}>
+            <p
+              className="text-base md:text-lg leading-relaxed mb-8 max-w-xl"
+              style={{ color: "hsl(0 0% 100% / 0.7)" }}
+            >
               {slide.description}
             </p>
 
@@ -119,7 +162,11 @@ const HeroSlider = () => {
                     {cta.label} <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 ) : (
-                  <Link key={cta.label} to={cta.path} className="btn-outline border-background/20 text-background hover:border-secondary hover:text-secondary">
+                  <Link
+                    key={cta.label}
+                    to={cta.path}
+                    className="btn-outline border-background/20 text-background hover:border-secondary hover:text-secondary"
+                  >
                     <Play className="mr-2 w-4 h-4" /> {cta.label}
                   </Link>
                 )
@@ -129,9 +176,18 @@ const HeroSlider = () => {
             {/* Stats */}
             <div className="flex gap-8 flex-wrap">
               {slide.stats.map((stat) => (
-                <div key={stat.label} className="relative pl-4 border-l-2" style={{ borderColor: "hsl(var(--gold))" }}>
-                  <div className="font-serif text-3xl font-black text-background leading-none">{stat.num}</div>
-                  <div className="text-xs tracking-widest uppercase mt-1" style={{ color: "hsl(0 0% 100% / 0.4)" }}>
+                <div
+                  key={stat.label}
+                  className="relative pl-4 border-l-2"
+                  style={{ borderColor: "hsl(var(--gold))" }}
+                >
+                  <div className="font-serif text-3xl font-black text-background leading-none">
+                    {stat.num}
+                  </div>
+                  <div
+                    className="text-xs tracking-widest uppercase mt-1"
+                    style={{ color: "hsl(0 0% 100% / 0.4)" }}
+                  >
                     {stat.label}
                   </div>
                 </div>
@@ -142,7 +198,11 @@ const HeroSlider = () => {
 
         {/* Controls */}
         <div className="absolute bottom-8 left-6 md:left-12 lg:left-20 flex items-center gap-4">
-          <button onClick={prev} className="p-2 rounded-full border border-background/20 text-background/60 hover:text-background hover:border-background/40 transition-colors" aria-label="Previous slide">
+          <button
+            onClick={prev}
+            className="p-2 rounded-full border border-background/20 text-background/60 hover:text-background hover:border-background/40 transition-colors"
+            aria-label="Previous slide"
+          >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <div className="flex gap-2">
@@ -155,7 +215,11 @@ const HeroSlider = () => {
               />
             ))}
           </div>
-          <button onClick={next} className="p-2 rounded-full border border-background/20 text-background/60 hover:text-background hover:border-background/40 transition-colors" aria-label="Next slide">
+          <button
+            onClick={next}
+            className="p-2 rounded-full border border-background/20 text-background/60 hover:text-background hover:border-background/40 transition-colors"
+            aria-label="Next slide"
+          >
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>

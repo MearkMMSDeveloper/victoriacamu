@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import camuLogo from "@/assets/camu-logo.png";
 
 const states = ["VIC", "NSW", "QLD", "SA", "WA", "TAS", "ACT", "NT", "NZ"];
 
@@ -31,12 +32,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="mb-4">
-              <span className="font-serif text-2xl font-bold">
-                Camu<span className="text-primary">.</span>
-              </span>
-              <p className="text-xs tracking-[0.18em] uppercase font-semibold text-primary mt-1">
-                School ERP · SRM Technologies Australia
-              </p>
+              <img src={camuLogo} alt="Camu ERP" className="h-10 w-auto brightness-0 invert" />
             </div>
             <p className="text-sm leading-relaxed opacity-60 max-w-md mb-6">
               One Platform. Every School. Every Student. Every Story. Victorian DE Panel SSP001 Approved.
