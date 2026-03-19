@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import camuLogo from "@/assets/camu-logo-new.png";
+import camuLogoDark from "@/assets/camu-logo-new.png";
+import camuLogoWhite from "@/assets/camu-logo-light.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -42,11 +43,11 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10 py-3">
         {/* Logo */}
         <Link to="/" className="flex items-center mr-6">
-          <div className="bg-white rounded-[10px] px-3 py-1.5 shadow-sm">
+          <div className={`rounded-[10px] px-3 py-1.5 transition-all duration-500 ${scrolled ? "bg-white shadow-sm" : "bg-transparent"}`}>
             <img
-              src={camuLogo}
+              src={scrolled ? camuLogoDark : camuLogoWhite}
               alt="Camu ERP"
-              className="h-[45px] sm:h-[55px] md:h-[80px] lg:h-[100px] w-auto"
+              className="h-[45px] sm:h-[55px] md:h-[80px] lg:h-[100px] w-auto transition-opacity duration-500"
             />
           </div>
         </Link>
