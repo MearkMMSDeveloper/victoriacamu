@@ -2,17 +2,13 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import camuLogo from "@/assets/camu-logo.png";
+import camuLogo from "@/assets/camu-logo-new.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
   { label: "Features", path: "/features" },
-  { label: "Personas", path: "/personas" },
   { label: "Implementation", path: "/implementation" },
-  { label: "Security", path: "/security" },
-  { label: "Pricing", path: "/pricing" },
-  { label: "Blog", path: "/blog" },
 ];
 
 const Navbar = () => {
@@ -31,18 +27,28 @@ const Navbar = () => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  const isHome = location.pathname === "/";
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white border-b ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-border shadow-md"
-          : "border-border/50"
+          ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-border/50"
+          : isHome
+          ? "bg-transparent"
+          : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 min-h-[80px] md:min-h-[100px]">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10 py-3">
         {/* Logo */}
-        <Link to="/" className="flex items-center mr-5">
-          <img src={camuLogo} alt="Camu ERP" className="h-[45px] sm:h-[55px] md:h-[80px] lg:h-[100px] w-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)]" />
+        <Link to="/" className="flex items-center mr-6">
+          <div className="bg-white rounded-[10px] px-3 py-1.5 shadow-sm">
+            <img
+              src={camuLogo}
+              alt="Camu ERP"
+              className="h-[45px] sm:h-[55px] md:h-[80px] lg:h-[100px] w-auto"
+            />
+          </div>
         </Link>
 
         {/* Desktop Nav */}
@@ -51,13 +57,18 @@ const Navbar = () => {
             <Link
               key={link.path}
               to={link.path}
-              className="relative px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className={`relative px-4 py-2.5 text-sm font-semibold transition-colors ${
+                scrolled
+                  ? "text-muted-foreground hover:text-foreground"
+                  : "text-white/80 hover:text-white"
+              }`}
             >
               {link.label}
               {location.pathname === link.path && (
                 <motion.div
                   layoutId="activeNav"
-                  className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-primary"
+                  className="absolute bottom-0 left-4 right-4 h-0.5 rounded-full"
+                  style={{ background: scrolled ? "hsl(var(--gold))" : "white" }}
                   transition={{ type: "spring", stiffness: 100, damping: 20 }}
                 />
               )}
@@ -66,10 +77,7 @@ const Navbar = () => {
         </div>
 
         {/* CTA */}
-        <div className="hidden lg:flex items-center gap-3">
-          <span className="text-xs font-semibold tracking-widest text-secondary border border-secondary/25 px-3 py-1 rounded-full">
-            DE PANEL
-          </span>
+        <div className="hidden lg:flex items-center">
           <Link to="/contact" className="btn-gold text-sm">
             Register Interest
           </Link>
@@ -78,7 +86,7 @@ const Navbar = () => {
         {/* Mobile Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden p-2 text-foreground"
+          className={`lg:hidden p-2 ${scrolled ? "text-foreground" : "text-white"}`}
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -92,7 +100,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-card border-b border-border overflow-hidden"
+            className="lg:hidden bg-white border-b border-border overflow-hidden shadow-xl"
           >
             <div className="px-6 py-4 flex flex-col gap-1">
               {navLinks.map((link) => (

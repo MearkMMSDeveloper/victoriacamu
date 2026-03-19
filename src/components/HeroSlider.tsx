@@ -74,10 +74,10 @@ const HeroSlider = () => {
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
-          initial={{ opacity: 0, scale: 1.05 }}
+          initial={{ opacity: 0, scale: 1.08 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1.2 }}
           className="absolute inset-0"
         >
           <img
@@ -85,12 +85,12 @@ const HeroSlider = () => {
             alt=""
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-foreground/65" />
+          <div className="absolute inset-0 bg-foreground/70" />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(135deg, hsl(var(--navy) / 0.5) 0%, transparent 60%), radial-gradient(ellipse at 65% 30%, hsl(var(--gold) / 0.1) 0%, transparent 50%)",
+                "linear-gradient(135deg, hsl(var(--navy) / 0.6) 0%, transparent 60%), radial-gradient(ellipse at 65% 30%, hsl(var(--gold) / 0.08) 0%, transparent 50%)",
             }}
           />
         </motion.div>
@@ -116,7 +116,7 @@ const HeroSlider = () => {
         ))}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-28 pb-20 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-36 pb-20 w-full">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
