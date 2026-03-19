@@ -28,28 +28,22 @@ const Navbar = () => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  const isHome = location.pathname === "/";
-
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-border/50"
-          : isHome
-          ? "bg-transparent"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10 py-3">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10 py-2">
         {/* Logo */}
-        <Link to="/" className="flex items-center mr-6">
-          <div className={`rounded-[10px] px-3 py-1.5 transition-all duration-500 ${scrolled ? "bg-white shadow-sm" : "bg-transparent"}`}>
-            <img
-              src={scrolled ? camuLogoDark : camuLogoWhite}
-              alt="Camu ERP"
-              className="h-[45px] sm:h-[55px] md:h-[80px] lg:h-[100px] w-auto transition-opacity duration-500"
-            />
-          </div>
+        <Link to="/" className="flex items-center mr-5">
+          <img
+            src={scrolled ? camuLogoDark : camuLogoWhite}
+            alt="Camu ERP"
+            className="h-[40px] sm:h-[50px] md:h-[60px] lg:h-[75px] w-auto transition-all duration-500"
+          />
         </Link>
 
         {/* Desktop Nav */}

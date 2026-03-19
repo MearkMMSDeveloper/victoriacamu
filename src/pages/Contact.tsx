@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, CheckCircle, Search } from "lucide-react";
+import { Send, CheckCircle, Search, MapPin, Mail, Phone } from "lucide-react";
 import { schools, getSchoolSize, type School } from "@/data/schools";
 import PageHero from "@/components/PageHero";
 import heroContact from "@/assets/hero-contact.jpg";
@@ -13,6 +13,10 @@ const sizes = ["Small (Under 300)", "Medium (300–800)", "Large (800+)"];
 const Contact = () => {
   const location = useLocation();
   const [submitted, setSubmitted] = useState(false);
+  const formRef = useRef<HTMLDivElement>(null);
+
+  // Determine if user came from Home or Implementation (state-based navigation)
+  const cameFromInternal = !!(location.state as { schoolName?: string } | null);
 
   // Form state
   const [schoolName, setSchoolName] = useState("");
@@ -26,9 +30,9 @@ const Contact = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Auto-fill from navigation state
+  // Auto-fill from navigation state & scroll to form if from internal link
   useEffect(() => {
-    const state = location.state as { schoolName?: string; schoolSize?: string; schoolState?: string } | null;
+    const state = location.state as { schoolName?: string; schoolSize?: string; schoolState?: string; scrollToForm?: boolean } | null;
     if (state) {
       if (state.schoolName) setSchoolName(state.schoolName);
       if (state.schoolSize) {
@@ -40,6 +44,11 @@ const Contact = () => {
         setSchoolSize(sizeMap[state.schoolSize] || state.schoolSize);
       }
       if (state.schoolState) setSchoolState(state.schoolState);
+
+      // Scroll to form if coming from internal pages
+      setTimeout(() => {
+        formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300);
     }
   }, [location.state]);
 
@@ -108,15 +117,55 @@ const Contact = () => {
 
   return (
     <>
-      <PageHero
-        label="Register"
-        title="Register Your Interest"
-        description="Whether you're in Victoria on the DE panel or anywhere across Australia & New Zealand — register and receive a tailored proposal within 2 business days."
-        image={heroContact}
-      />
+      {/* Show hero only when NOT coming from internal navigation */}
+      {!cameFromInternal && (
+        <PageHero
+          label="Register"
+          title="Register Your Interest"
+          description="Whether you're in Victoria on the DE panel or anywhere across Australia & New Zealand — register and receive a tailored proposal within 2 business days."
+          image={heroContact}
+        />
+      )}
 
-      <section className="section-padding">
+      {/* Contact Info Section - only when full page view */}
+      {!cameFromInternal && (
+        <section className="section-padding bg-card">
+          <div className="max-w-4xl mx-auto">
+            <p className="section-label">Get in Touch</p>
+            <h2 className="section-title mb-8">Contact Information</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="card-premium text-center">
+                <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-4 mx-auto">
+                  <MapPin className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-serif text-lg font-bold mb-2">Our Office</h3>
+                <p className="text-sm text-muted-foreground">SRM Technologies Australia Pty Ltd</p>
+                <p className="text-sm text-muted-foreground">Melbourne, Victoria, Australia</p>
+              </div>
+              <div className="card-premium text-center">
+                <div className="w-12 h-12 rounded-xl bg-teal-light flex items-center justify-center mb-4 mx-auto">
+                  <Mail className="w-6 h-6 text-secondary" />
+                </div>
+                <h3 className="font-serif text-lg font-bold mb-2">Email Us</h3>
+                <a href="mailto:info@camuerp.com.au" className="text-sm text-primary hover:underline">info@camuerp.com.au</a>
+              </div>
+              <div className="card-premium text-center">
+                <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-4 mx-auto">
+                  <Phone className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-serif text-lg font-bold mb-2">Response Time</h3>
+                <p className="text-sm text-muted-foreground">Tailored proposal within 2 business days</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className="section-padding" ref={formRef}>
         <div className="max-w-3xl mx-auto">
+          {/* Add padding top when skipping hero */}
+          {cameFromInternal && <div className="pt-20" />}
+
           {submitted ? (
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="card-premium text-center py-16">
               <CheckCircle className="w-16 h-16 text-secondary mx-auto mb-6" />
@@ -127,6 +176,7 @@ const Contact = () => {
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="card-premium">
+              <h2 className="font-serif text-2xl font-bold mb-6">Register Your School</h2>
               <div className="grid md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-2">Full Name *</label>

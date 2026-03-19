@@ -12,8 +12,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ["Fraunces", "Georgia", "serif"],
-        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+        serif: ["Roboto Slab", "Georgia", "serif"],
+        sans: ["Inter", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
       },
       colors: {

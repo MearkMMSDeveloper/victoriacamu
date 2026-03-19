@@ -58,14 +58,12 @@ const included = [
   "Cyber & IT liability insured platform",
 ];
 
-/* ── PRICING ── */
 const pricingTiers = [
   { size: "Small", students: "Under 300 students", features: ["Full platform access", "Implementation support", "Staff training included", "12-month hypercare", "DE compliance updates"] },
   { size: "Medium", students: "300-800 students", features: ["Full platform access", "Implementation support", "Staff training included", "12-month hypercare", "DE compliance updates", "Priority support"] },
   { size: "Large", students: "800+ students", features: ["Full platform access", "Implementation support", "Staff training included", "12-month hypercare", "DE compliance updates", "Priority support", "Dedicated account manager"] },
 ];
 
-/* ── SECURITY ── */
 const certifications = [
   { icon: Lock, title: "ISO 27001", desc: "Information Security Management — internationally recognised standard for managing information security risks." },
   { icon: Cloud, title: "SOC 2 Type II", desc: "Service Organisation Control — independent third-party audit of security, availability, and privacy controls." },
@@ -104,34 +102,42 @@ const Implementation = () => {
                 viewport={{ once: true }}
                 className="card-premium relative overflow-hidden"
               >
-                <motion.div
-                  className="absolute top-0 left-0 right-0 h-1 bg-primary"
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  transition={{ duration: 0.8, delay: idx * 0.2 }}
-                  viewport={{ once: true }}
-                  style={{ transformOrigin: "left" }}
+                {/* Top orange bar */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-1"
+                  style={{ background: "hsl(var(--gold))" }}
                 />
-                <p className="font-serif text-xl font-bold mb-1">{plan.size}</p>
-                <p className="text-xs text-muted-foreground mb-1">{plan.students}</p>
-                <p className="font-mono text-2xl font-bold text-primary mb-6">{plan.timeline}</p>
 
-                <div className="relative pl-6">
-                  <div className="absolute left-2 top-2 bottom-2 w-px border-l-2 border-dashed" style={{ borderColor: "hsl(var(--gold) / 0.3)" }} />
-                  {plan.steps.map((step, i) => (
-                    <motion.div
-                      key={i}
-                      className="relative pb-5 last:pb-0"
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: i * 0.1 }}
-                      viewport={{ once: true }}
-                    >
-                      <div className="absolute left-[-18px] top-1 w-3 h-3 rounded-full bg-primary border-2 border-card" />
-                      <p className="text-xs font-mono text-muted-foreground mb-0.5">{step.week}</p>
-                      <p className="text-sm font-semibold text-foreground">{step.label}</p>
-                    </motion.div>
-                  ))}
+                <div className="pt-2">
+                  <p className="font-serif text-xl font-bold mb-1">{plan.size}</p>
+                  <p className="text-xs text-muted-foreground mb-1">{plan.students}</p>
+                  <p className="font-mono text-2xl font-bold text-primary mb-6">{plan.timeline}</p>
+
+                  <div className="relative pl-6">
+                    {/* Vertical connecting line */}
+                    <div
+                      className="absolute left-[7px] top-1 bottom-1 w-0.5"
+                      style={{ background: "hsl(var(--gold) / 0.4)" }}
+                    />
+                    {plan.steps.map((step, i) => (
+                      <motion.div
+                        key={i}
+                        className="relative pb-5 last:pb-0"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: i * 0.1 }}
+                        viewport={{ once: true }}
+                      >
+                        {/* Dot */}
+                        <div
+                          className="absolute left-[-18px] top-1.5 w-3 h-3 rounded-full border-2 border-card"
+                          style={{ background: "hsl(var(--gold))" }}
+                        />
+                        <p className="text-xs font-mono text-muted-foreground mb-0.5">{step.week}</p>
+                        <p className="text-sm font-semibold text-foreground">{step.label}</p>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -158,7 +164,7 @@ const Implementation = () => {
       {/* School Search */}
       <SchoolSearch />
 
-      {/* ── PRICING SECTION ── */}
+      {/* Pricing */}
       <section className="section-padding">
         <div className="max-w-5xl mx-auto">
           <p className="section-label">Pricing</p>
@@ -211,7 +217,7 @@ const Implementation = () => {
         </div>
       </section>
 
-      {/* ── SECURITY SECTION ── */}
+      {/* Security */}
       <section className="section-padding bg-card">
         <div className="max-w-6xl mx-auto">
           <p className="section-label">Security & Compliance</p>

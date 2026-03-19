@@ -66,7 +66,15 @@ const About = () => {
       {/* Vision & Mission */}
       <section className="section-padding bg-card">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="card-premium">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            whileHover={{ y: -8, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="card-premium cursor-default hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)]"
+          >
             <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-5">
               <Eye className="w-6 h-6 text-primary" />
             </div>
@@ -75,7 +83,15 @@ const About = () => {
               To be the trusted digital backbone of every school in Australia and New Zealand — enabling institutions to operate with clarity, efficiency, and confidence.
             </p>
           </motion.div>
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="card-premium">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            whileHover={{ y: -8, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="card-premium cursor-default hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)]"
+          >
             <div className="w-12 h-12 rounded-xl bg-teal-light flex items-center justify-center mb-5">
               <Target className="w-6 h-6 text-secondary" />
             </div>

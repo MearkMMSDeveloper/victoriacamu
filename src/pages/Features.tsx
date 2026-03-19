@@ -320,20 +320,23 @@ const Features = () => {
       </section>
 
       {/* ── FEATURES SECTION (SECOND) ── */}
-      <section className="section-padding bg-card">
+      <section className="section-padding">
         <div className="max-w-7xl mx-auto">
           <p className="section-label">Platform Features</p>
           <h2 className="section-title mb-12">Everything Your School Needs</h2>
 
-          <div className="space-y-8">
-            {features.map((f) => (
+          <div className="space-y-0">
+            {features.map((f, idx) => (
               <motion.div
                 key={f.title}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.05 }}
                 viewport={{ once: true }}
-                className="card-premium grid md:grid-cols-[1fr,1.2fr] gap-8 items-center group hover:border-primary/20 transition-colors"
+                className={`grid md:grid-cols-[1fr,1.2fr] gap-8 items-center group p-8 rounded-2xl border border-border transition-colors ${
+                  idx % 2 === 0 ? "bg-card" : "bg-background"
+                }`}
+                style={{ marginBottom: idx < features.length - 1 ? "1.5rem" : 0 }}
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-teal-light flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -363,7 +366,7 @@ const Features = () => {
             Book a demo and we'll walk you through every capability tailored to your school.
           </p>
           <Link to="/contact" className="btn-gold">
-            Request a Demo <ArrowRight className="ml-2 w-4 h-4" />
+            Register Interest <ArrowRight className="ml-2 w-4 h-4" />
           </Link>
         </div>
       </section>
