@@ -9,26 +9,29 @@ interface PageHeroProps {
 
 const PageHero = ({ label, title, description, image }: PageHeroProps) => {
   return (
-    <section className="relative min-h-[420px] md:min-h-[480px] flex items-center overflow-hidden">
+    <section className="relative min-h-[520px] md:min-h-[580px] flex items-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
+        <motion.img
           src={image}
           alt=""
           className="w-full h-full object-cover"
           loading="eager"
+          initial={{ scale: 1.05 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
         />
         <div className="absolute inset-0 bg-foreground/70" />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(135deg, hsl(var(--navy) / 0.6) 0%, transparent 60%), radial-gradient(ellipse at 70% 30%, hsl(var(--teal) / 0.15) 0%, transparent 50%)",
+              "linear-gradient(135deg, hsl(var(--navy) / 0.6) 0%, transparent 60%), radial-gradient(ellipse at 70% 30%, hsl(var(--teal) / 0.12) 0%, transparent 50%)",
           }}
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-32 pb-16 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-36 pb-16 w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

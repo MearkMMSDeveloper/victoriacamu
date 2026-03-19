@@ -11,7 +11,6 @@ import {
   MessageSquare,
   BarChart3,
   GraduationCap,
-  UserCheck,
   Monitor,
   Baby,
   Heart,
@@ -19,7 +18,6 @@ import {
   Cloud,
   Globe,
   CheckCircle,
-  Clock,
 } from "lucide-react";
 
 const features = [
@@ -44,12 +42,6 @@ const securityItems = [
   { icon: Shield, title: "SOC 2 Type II", desc: "Independent audit of security, availability, and privacy." },
   { icon: Cloud, title: "Australian-Hosted", desc: "All data stored in AWS Sydney & Melbourne data centres." },
   { icon: Globe, title: "GDPR Aligned", desc: "Highest global standard of data rights and protection." },
-];
-
-const blogPosts = [
-  { title: "Why Schools Need ERP Software in 2025", category: "Industry Insights", time: "5 min" },
-  { title: "Benefits of School ERP: A Complete Guide", category: "Guides", time: "7 min" },
-  { title: "Digital Transformation in Australian Education", category: "Trends", time: "6 min" },
 ];
 
 const stagger = {
@@ -105,7 +97,7 @@ const Index = () => {
                 Camu ERP is a fully integrated school management platform that connects every student, parent, teacher, and administrator in one seamlessly connected ecosystem.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Built by SRM Technologies Australia, Camu is listed on the Victorian Department of Education School Software Panel (SSP001) across all four procurement categories.
+                Implemented and marketed by SRM Technologies Australia, Camu is listed on the Victorian Department of Education School Software Panel (SSP001) across all four procurement categories.
               </p>
               <Link to="/about" className="btn-gold">
                 Learn More About Us <ArrowRight className="ml-2 w-4 h-4" />
@@ -191,7 +183,7 @@ const Index = () => {
           </motion.div>
 
           <div className="mt-10 text-center">
-            <Link to="/personas" className="btn-outline">
+            <Link to="/features" className="btn-outline">
               Explore All Personas <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </div>
@@ -227,92 +219,6 @@ const Index = () => {
               </motion.div>
             ))}
           </motion.div>
-
-          <div className="mt-10 text-center">
-            <Link to="/security" className="btn-outline">
-              View Security Details <ArrowRight className="ml-2 w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Preview */}
-      <section className="section-padding bg-card">
-        <div className="max-w-5xl mx-auto">
-          <p className="section-label">Pricing</p>
-          <h2 className="section-title">Flexible Pricing for All Schools</h2>
-          <p className="section-subtitle mb-12">
-            Custom pricing tailored to your school's size, modules, and requirements.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {["Small", "Medium", "Large"].map((size, i) => (
-              <motion.div
-                key={size}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className={`card-premium relative overflow-hidden text-center ${i === 1 ? "border-primary border-2" : ""}`}
-              >
-                {i === 1 && (
-                  <div className="absolute top-0 left-0 right-0 text-center py-1 text-xs font-bold bg-primary text-primary-foreground">
-                    Most Popular
-                  </div>
-                )}
-                <div className={i === 1 ? "pt-4" : ""}>
-                  <p className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-2">{size} School</p>
-                  <p className="font-serif text-3xl font-black text-foreground mb-1">Custom</p>
-                  <p className="text-sm text-muted-foreground mb-6">
-                    {size === "Small" ? "Under 300 students" : size === "Medium" ? "300–800 students" : "800+ students"}
-                  </p>
-                  <Link to="/pricing" className={i === 1 ? "btn-gold w-full text-center" : "btn-outline w-full text-center"}>
-                    View Details
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Preview */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto">
-          <p className="section-label">Resources</p>
-          <h2 className="section-title">Latest Insights</h2>
-          <p className="section-subtitle mb-12">
-            Expert articles on school technology and education in Australia.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {blogPosts.map((post) => (
-              <motion.div
-                key={post.title}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="card-premium group cursor-pointer"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-bold tracking-wider uppercase text-primary">{post.category}</span>
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Clock className="w-3 h-3" /> {post.time}
-                  </span>
-                </div>
-                <h3 className="font-serif text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-snug">
-                  {post.title}
-                </h3>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-10 text-center">
-            <Link to="/blog" className="btn-outline">
-              View All Articles <ArrowRight className="ml-2 w-4 h-4" />
-            </Link>
-          </div>
         </div>
       </section>
 

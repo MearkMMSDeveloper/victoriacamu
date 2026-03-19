@@ -39,8 +39,11 @@ const About = () => {
               <p className="text-muted-foreground leading-relaxed mb-6">
                 Camu ERP is a fully integrated school management platform that connects every student, parent, teacher, administrator, and education authority in one seamlessly connected ecosystem — reducing administrative overhead and amplifying what matters most: learning.
               </p>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                <strong className="text-foreground">Camu ERP is implemented and marketed by SRM Technologies Australia Pty Ltd.</strong> With deep expertise in education technology, SRM Technologies brings enterprise-level solutions to schools across Australia and New Zealand.
+              </p>
               <p className="text-muted-foreground leading-relaxed">
-                Built by SRM Technologies Australia, Camu is listed on the Victorian Department of Education School Software Panel (SSP001) across all four procurement categories — enabling streamlined, pre-approved procurement for government schools.
+                Camu is listed on the Victorian Department of Education School Software Panel (SSP001) across all four procurement categories — enabling streamlined, pre-approved procurement for government schools.
               </p>
             </motion.div>
             <motion.div variants={slideInRight} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-2 gap-4">
