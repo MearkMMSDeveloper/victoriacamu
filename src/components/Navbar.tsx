@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import camuLogo from "@/assets/camu-logo-new.png";
+import camuLogoDark from "@/assets/camu-logo-new.png";
+import camuLogoWhite from "@/assets/camu-logo-light.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
