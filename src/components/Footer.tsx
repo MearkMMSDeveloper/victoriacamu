@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { MapPin, Mail } from "lucide-react";
 import camuLogoLight from "@/assets/camu-logo-light.png";
 
 const footerLinks = [
@@ -25,7 +26,7 @@ const Footer = () => {
               <img
                 src={camuLogoLight}
                 alt="Camu ERP"
-                className="h-[50px] md:h-[80px] w-auto drop-shadow-[0_2px_4px_rgba(255,255,255,0.15)]"
+                className="h-[40px] md:h-[70px] w-auto"
               />
             </div>
             <p className="text-sm leading-relaxed opacity-60 max-w-md mb-4">
@@ -62,11 +63,17 @@ const Footer = () => {
             <h4 className="font-sans text-sm font-bold tracking-wide uppercase mb-4 opacity-40">
               Contact
             </h4>
-            <ul className="space-y-3 text-sm opacity-60">
-              <li>SRM Technologies Australia Pty Ltd</li>
-              <li>Melbourne, Victoria, Australia</li>
+            <ul className="space-y-4 text-sm opacity-60">
+              <li className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5 opacity-80" />
+                <div>
+                  <p>SRM Technologies Australia Pty Ltd</p>
+                  <p>Melbourne, Victoria, Australia</p>
+                </div>
+              </li>
               <li>
-                <a href="mailto:info@camuerp.com.au" className="hover:opacity-100 hover:text-primary transition-all">
+                <a href="mailto:info@camuerp.com.au" className="flex items-center gap-3 hover:opacity-100 hover:text-primary transition-all">
+                  <Mail className="w-4 h-4 flex-shrink-0 opacity-80" />
                   info@camuerp.com.au
                 </a>
               </li>

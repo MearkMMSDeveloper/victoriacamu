@@ -19,6 +19,7 @@ import {
   Globe,
   CheckCircle,
 } from "lucide-react";
+import heroHome1 from "@/assets/hero-home-1.jpg";
 
 const features = [
   { icon: Users, title: "Student Information System", desc: "Complete student lifecycle management from enrolment to graduation." },
@@ -155,9 +156,13 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Personas Section */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto">
+      {/* Personas Section with subtle background */}
+      <section className="section-padding relative overflow-hidden">
+        {/* Subtle background image */}
+        <div className="absolute inset-0 opacity-[0.04]">
+          <img src={heroHome1} alt="" className="w-full h-full object-cover" />
+        </div>
+        <div className="relative max-w-7xl mx-auto">
           <p className="section-label">Who Benefits</p>
           <h2 className="section-title">Built for Every Role in Your School</h2>
           <p className="section-subtitle mb-12">
@@ -239,7 +244,7 @@ const Index = () => {
             Join schools across Australia and New Zealand already using Camu ERP to streamline operations and improve engagement.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            <Link to="/contact" className="btn-gold">
+            <Link to="/contact" state={{ scrollToForm: true }} className="btn-gold">
               Register Your School <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
             <Link
