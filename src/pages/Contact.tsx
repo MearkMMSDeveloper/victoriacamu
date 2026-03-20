@@ -15,9 +15,6 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
 
-  // Determine if user came from Home or Implementation (state-based navigation)
-  const cameFromInternal = !!(location.state as { schoolName?: string } | null);
-
   // Form state
   const [schoolName, setSchoolName] = useState("");
   const [schoolSize, setSchoolSize] = useState("");
@@ -30,7 +27,7 @@ const Contact = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Auto-fill from navigation state & scroll to form if from internal link
+  // Auto-fill from navigation state & scroll to form
   useEffect(() => {
     const state = location.state as { schoolName?: string; schoolSize?: string; schoolState?: string; scrollToForm?: boolean } | null;
     if (state) {
@@ -45,10 +42,10 @@ const Contact = () => {
       }
       if (state.schoolState) setSchoolState(state.schoolState);
 
-      // Scroll to form if coming from internal pages
+      // Always scroll to form when coming from internal pages
       setTimeout(() => {
         formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 300);
+      }, 600);
     }
   }, [location.state]);
 
