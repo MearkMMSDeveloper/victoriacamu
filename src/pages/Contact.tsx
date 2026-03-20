@@ -114,18 +114,12 @@ const Contact = () => {
 
   return (
     <>
-      {/* Show hero only when NOT coming from internal navigation */}
-      {!cameFromInternal && (
-        <PageHero
-          label="Register"
-          title="Register Your Interest"
-          description="Whether you're in Victoria on the DE panel or anywhere across Australia & New Zealand — register and receive a tailored proposal within 2 business days."
-          image={heroContact}
-        />
-      )}
-
-      {/* Contact Info Section - only when full page view */}
-      {!cameFromInternal && (
+      <PageHero
+        label="Register"
+        title="Register Your Interest"
+        description="Whether you're in Victoria on the DE panel or anywhere across Australia & New Zealand — register and receive a tailored proposal within 2 business days."
+        image={heroContact}
+      />
         <section className="section-padding bg-card">
           <div className="max-w-4xl mx-auto">
             <p className="section-label">Get in Touch</p>
