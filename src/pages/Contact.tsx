@@ -150,12 +150,9 @@ const Contact = () => {
             </div>
           </div>
         </section>
-      )}
 
       <section className="section-padding" ref={formRef}>
         <div className="max-w-3xl mx-auto">
-          {/* Add padding top when skipping hero */}
-          {cameFromInternal && <div className="pt-20" />}
 
           {submitted ? (
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="card-premium text-center py-16">
