@@ -15,9 +15,6 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
 
-  // Determine if user came from Home or Implementation (state-based navigation)
-  const cameFromInternal = !!(location.state as { schoolName?: string } | null);
-
   // Form state
   const [schoolName, setSchoolName] = useState("");
   const [schoolSize, setSchoolSize] = useState("");
@@ -30,7 +27,7 @@ const Contact = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Auto-fill from navigation state & scroll to form if from internal link
+  // Auto-fill from navigation state & scroll to form
   useEffect(() => {
     const state = location.state as { schoolName?: string; schoolSize?: string; schoolState?: string; scrollToForm?: boolean } | null;
     if (state) {
@@ -45,10 +42,10 @@ const Contact = () => {
       }
       if (state.schoolState) setSchoolState(state.schoolState);
 
-      // Scroll to form if coming from internal pages
+      // Always scroll to form when coming from internal pages
       setTimeout(() => {
         formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 300);
+      }, 600);
     }
   }, [location.state]);
 
@@ -117,18 +114,12 @@ const Contact = () => {
 
   return (
     <>
-      {/* Show hero only when NOT coming from internal navigation */}
-      {!cameFromInternal && (
-        <PageHero
-          label="Register"
-          title="Register Your Interest"
-          description="Whether you're in Victoria on the DE panel or anywhere across Australia & New Zealand — register and receive a tailored proposal within 2 business days."
-          image={heroContact}
-        />
-      )}
-
-      {/* Contact Info Section - only when full page view */}
-      {!cameFromInternal && (
+      <PageHero
+        label="Register"
+        title="Register Your Interest"
+        description="Whether you're in Victoria on the DE panel or anywhere across Australia & New Zealand — register and receive a tailored proposal within 2 business days."
+        image={heroContact}
+      />
         <section className="section-padding bg-card">
           <div className="max-w-4xl mx-auto">
             <p className="section-label">Get in Touch</p>
@@ -159,12 +150,9 @@ const Contact = () => {
             </div>
           </div>
         </section>
-      )}
 
       <section className="section-padding" ref={formRef}>
         <div className="max-w-3xl mx-auto">
-          {/* Add padding top when skipping hero */}
-          {cameFromInternal && <div className="pt-20" />}
 
           {submitted ? (
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="card-premium text-center py-16">
