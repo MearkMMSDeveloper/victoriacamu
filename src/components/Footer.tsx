@@ -85,9 +85,9 @@ const Footer = () => {
           <p className="text-xs opacity-40">
             &copy; {new Date().getFullYear()} SRM Technologies Australia Pty Ltd. All rights reserved.
           </p>
-          <div className="flex gap-6 text-xs opacity-40">
-            <Link to="/privacy-policy" className="hover:opacity-100 transition-opacity">Privacy Policy</Link>
-            <Link to="/terms-of-use" className="hover:opacity-100 transition-opacity">Terms of Use</Link>
+          <div className="flex gap-6 text-xs opacity-60">
+            <Link to="/privacy-policy" className="hover:opacity-100 hover:text-[hsl(43,100%,53%)] transition-colors duration-300">Privacy Policy</Link>
+            <Link to="/terms-of-use" className="hover:opacity-100 hover:text-[hsl(43,100%,53%)] transition-colors duration-300">Terms of Use</Link>
           </div>
         </div>
       </div>
