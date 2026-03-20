@@ -38,10 +38,9 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10 py-2">
         {/* Logo */}
         <Link to="/" className="flex items-center mr-5">
-          <img
-            src={scrolled ? camuLogoDark : camuLogoWhite}
-            alt="Camu ERP"
-            className="h-[40px] sm:h-[50px] md:h-[60px] lg:h-[75px] w-auto transition-all duration-500"
+          <CamuLogo
+            textColor={scrolled ? "black" : "white"}
+            iconHeight="h-[40px] sm:h-[45px] lg:h-[55px]"
           />
         </Link>
 
