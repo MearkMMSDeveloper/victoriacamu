@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { MapPin, Mail } from "lucide-react";
-import camuLogoLight from "@/assets/camu-logo-light.png";
+import CamuLogo from "@/components/CamuLogo";
 
 const footerLinks = [
   {
@@ -23,11 +23,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="mb-3">
-              <img
-                src={camuLogoLight}
-                alt="Camu ERP"
-                className="h-[40px] md:h-[70px] w-auto"
-              />
+              <CamuLogo textColor="white" iconHeight="h-[40px] md:h-[55px]" />
             </div>
             <p className="text-sm leading-relaxed opacity-60 max-w-md mb-4">
               One Platform. Every School. Every Student. Every Story.
