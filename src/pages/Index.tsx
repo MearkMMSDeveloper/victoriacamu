@@ -159,7 +159,7 @@ const Index = () => {
       {/* Personas Section with subtle background */}
       <section className="section-padding relative overflow-hidden">
         {/* Subtle background image */}
-        <div className="absolute inset-0 opacity-[0.04]">
+        <div className="absolute inset-0 opacity-[0.15]">
           <img src={heroHome1} alt="" className="w-full h-full object-cover" />
         </div>
         <div className="relative max-w-7xl mx-auto">
