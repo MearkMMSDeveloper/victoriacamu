@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { MapPin, Mail } from "lucide-react";
-import camuLogoLight from "@/assets/camu-logo-light.png";
+import CamuLogo from "@/components/CamuLogo";
 
 const footerLinks = [
   {
