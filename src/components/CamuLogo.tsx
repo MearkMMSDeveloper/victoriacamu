@@ -7,7 +7,7 @@ interface CamuLogoProps {
 
 const CamuLogo = ({ textColor = "white", iconHeight = "h-[60px]" }: CamuLogoProps) => {
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-0.5">
       <img
         src={camuIcon}
         alt="CamU"
