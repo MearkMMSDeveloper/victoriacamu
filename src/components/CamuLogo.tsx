@@ -7,10 +7,10 @@ interface CamuLogoProps {
 
 const CamuLogo = ({ textColor = "white", iconHeight = "h-[60px]" }: CamuLogoProps) => {
   return (
-    <div className="flex items-center gap-2.5">
+    <div className="flex items-center gap-1">
       <img
         src={camuIcon}
-        alt="Camu"
+        alt="CamU"
         className={`${iconHeight} w-auto object-contain`}
       />
       <span
@@ -18,7 +18,7 @@ const CamuLogo = ({ textColor = "white", iconHeight = "h-[60px]" }: CamuLogoProp
           textColor === "white" ? "text-white" : "text-foreground"
         }`}
       >
-        camu
+        CamU
       </span>
     </div>
   );
