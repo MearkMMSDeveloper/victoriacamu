@@ -12,6 +12,7 @@ const sizes = ["Small (Under 300)", "Medium (300–800)", "Large (800+)"];
 
 const Contact = () => {
   const location = useLocation();
+  const { schools, loading: schoolsLoading } = useSchoolData();
   const [submitted, setSubmitted] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
 
