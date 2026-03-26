@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, CheckCircle, Search, MapPin, Mail, Phone } from "lucide-react";
-import { schools, getSchoolSize, type School } from "@/data/schools";
+import { Send, CheckCircle, Search, MapPin, Mail, Phone, Loader2 } from "lucide-react";
+import { useSchoolData, type School } from "@/hooks/useSchoolData";
 import PageHero from "@/components/PageHero";
 import heroContact from "@/assets/hero-contact.jpg";
 
@@ -12,6 +12,7 @@ const sizes = ["Small (Under 300)", "Medium (300–800)", "Large (800+)"];
 
 const Contact = () => {
   const location = useLocation();
+  const { schools, loading: schoolsLoading } = useSchoolData();
   const [submitted, setSubmitted] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
 
@@ -62,18 +63,17 @@ const Contact = () => {
     setSearchResults(matched);
     setShowDropdown(matched.length > 0);
     setActiveIndex(-1);
-  }, []);
+  }, [schools]);
 
   const selectSchool = (school: School) => {
     setSchoolName(school.name);
     setSchoolState(school.state);
-    const sizeInfo = getSchoolSize(school.students);
     const sizeMap: Record<string, string> = {
       "Small": "Small (Under 300)",
       "Medium": "Medium (300–800)",
       "Large": "Large (800+)",
     };
-    setSchoolSize(sizeMap[sizeInfo.label] || "");
+    setSchoolSize(sizeMap[school.size] || "");
     setShowDropdown(false);
   };
 
