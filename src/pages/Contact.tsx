@@ -63,18 +63,17 @@ const Contact = () => {
     setSearchResults(matched);
     setShowDropdown(matched.length > 0);
     setActiveIndex(-1);
-  }, []);
+  }, [schools]);
 
   const selectSchool = (school: School) => {
     setSchoolName(school.name);
     setSchoolState(school.state);
-    const sizeInfo = getSchoolSize(school.students);
     const sizeMap: Record<string, string> = {
       "Small": "Small (Under 300)",
       "Medium": "Medium (300–800)",
       "Large": "Large (800+)",
     };
-    setSchoolSize(sizeMap[sizeInfo.label] || "");
+    setSchoolSize(sizeMap[school.size] || "");
     setShowDropdown(false);
   };
 
