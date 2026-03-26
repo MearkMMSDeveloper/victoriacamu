@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, CheckCircle, Search, MapPin, Mail, Phone } from "lucide-react";
-import { schools, getSchoolSize, type School } from "@/data/schools";
+import { Send, CheckCircle, Search, MapPin, Mail, Phone, Loader2 } from "lucide-react";
+import { useSchoolData, type School } from "@/hooks/useSchoolData";
 import PageHero from "@/components/PageHero";
 import heroContact from "@/assets/hero-contact.jpg";
 
