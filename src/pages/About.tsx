@@ -27,7 +27,7 @@ const slideInRight = {
 const corePartners = [
   {
     name: "SRM Technologies",
-    icon: Building2,
+    logo: srmLogo,
     role: "Implementation & Marketing Partner",
     description:
       "SRM Technologies Australia Pty Ltd is a specialized EdTech solutions provider grounded in education through the SRM Group of Institutions — India's largest multidisciplinary private educational conglomerate serving 157,700+ students. SRM Technologies delivers comprehensive managed IT services, EdTech solutions, and digital transformation initiatives for educational institutions globally.",
@@ -35,7 +35,7 @@ const corePartners = [
   },
   {
     name: "Camu",
-    icon: GraduationCap,
+    logo: camuLogo,
     role: "Core Technology Platform",
     description:
       "Camu is a powerful cloud-based ERP platform purpose-built to transform the learning experience across education institutions worldwide — serving 550+ institutions across 12 countries with a user base exceeding 1 million students. The platform encompasses Learning Management, Outcome Based Education, Virtual Classrooms, and cutting-edge AI capabilities.",
@@ -43,7 +43,7 @@ const corePartners = [
   },
   {
     name: "LeadSquared",
-    icon: BarChart3,
+    logo: leadsquaredLogo,
     role: "CRM & Marketing Automation",
     description:
       "LeadSquared empowers organizations to deliver personalised customer interactions at scale. An end-to-end digital engagement platform helping businesses build connected experiences — serving 2,000+ businesses across 40+ countries with 250,000+ users. The platform is GDPR, HIPAA & ISO 27001 compliant.",
@@ -55,7 +55,7 @@ const localPartners = [
   {
     name: "Crystal Delta",
     badge: "Local Partner",
-    icon: Shield,
+    logo: crystalDeltaLogo,
     description:
       "Crystal Delta is a global technology and education solutions company headquartered in Melbourne, Australia, delivering innovative and impactful technology solutions since 2015. With 150+ professionals across five offices in Australia, the United States, and India, Crystal Delta serves 60+ clients through its SoaringEd education portfolio — providing value-driven, secure, and scalable technology solutions.",
     highlights: ["Melbourne HQ", "150+ Professionals", "60+ Clients"],
@@ -63,7 +63,7 @@ const localPartners = [
   {
     name: "Genix Ventures",
     badge: "Local Partner",
-    icon: MapPin,
+    logo: genixLogo,
     description:
       "Genix Ventures is an Australian technology company headquartered in Melbourne, delivering innovative cloud-based business process automation solutions. Specializing in regulatory compliance, case management, and workflow automation, Genix offers Casegenix — a sophisticated cloud-native case management platform. ISO 9001 and ISO 27001 certified.",
     highlights: ["Cloud-Native Solutions", "Casegenix Platform", "ISO Certified"],
