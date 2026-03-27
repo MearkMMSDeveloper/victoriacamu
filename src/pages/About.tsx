@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Target, Eye, CheckCircle, Building2, GraduationCap, BarChart3, MapPin, Shield } from "lucide-react";
+import { ArrowRight, Target, Eye, CheckCircle } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import heroAbout from "@/assets/hero-about.jpg";
+import srmLogo from "@/assets/partners/srm.png";
+import camuLogo from "@/assets/partners/camu.jpeg";
+import leadsquaredLogo from "@/assets/partners/leadsquared.webp";
+import crystalDeltaLogo from "@/assets/partners/crystal_delta.png";
+import genixLogo from "@/assets/partners/genix.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -22,7 +27,7 @@ const slideInRight = {
 const corePartners = [
   {
     name: "SRM Technologies",
-    icon: Building2,
+    logo: srmLogo,
     role: "Implementation & Marketing Partner",
     description:
       "SRM Technologies Australia Pty Ltd is a specialized EdTech solutions provider grounded in education through the SRM Group of Institutions — India's largest multidisciplinary private educational conglomerate serving 157,700+ students. SRM Technologies delivers comprehensive managed IT services, EdTech solutions, and digital transformation initiatives for educational institutions globally.",
@@ -30,7 +35,7 @@ const corePartners = [
   },
   {
     name: "Camu",
-    icon: GraduationCap,
+    logo: camuLogo,
     role: "Core Technology Platform",
     description:
       "Camu is a powerful cloud-based ERP platform purpose-built to transform the learning experience across education institutions worldwide — serving 550+ institutions across 12 countries with a user base exceeding 1 million students. The platform encompasses Learning Management, Outcome Based Education, Virtual Classrooms, and cutting-edge AI capabilities.",
@@ -38,7 +43,7 @@ const corePartners = [
   },
   {
     name: "LeadSquared",
-    icon: BarChart3,
+    logo: leadsquaredLogo,
     role: "CRM & Marketing Automation",
     description:
       "LeadSquared empowers organizations to deliver personalised customer interactions at scale. An end-to-end digital engagement platform helping businesses build connected experiences — serving 2,000+ businesses across 40+ countries with 250,000+ users. The platform is GDPR, HIPAA & ISO 27001 compliant.",
@@ -50,7 +55,7 @@ const localPartners = [
   {
     name: "Crystal Delta",
     badge: "Local Partner",
-    icon: Shield,
+    logo: crystalDeltaLogo,
     description:
       "Crystal Delta is a global technology and education solutions company headquartered in Melbourne, Australia, delivering innovative and impactful technology solutions since 2015. With 150+ professionals across five offices in Australia, the United States, and India, Crystal Delta serves 60+ clients through its SoaringEd education portfolio — providing value-driven, secure, and scalable technology solutions.",
     highlights: ["Melbourne HQ", "150+ Professionals", "60+ Clients"],
@@ -58,7 +63,7 @@ const localPartners = [
   {
     name: "Genix Ventures",
     badge: "Local Partner",
-    icon: MapPin,
+    logo: genixLogo,
     description:
       "Genix Ventures is an Australian technology company headquartered in Melbourne, delivering innovative cloud-based business process automation solutions. Specializing in regulatory compliance, case management, and workflow automation, Genix offers Casegenix — a sophisticated cloud-native case management platform. ISO 9001 and ISO 27001 certified.",
     highlights: ["Cloud-Native Solutions", "Casegenix Platform", "ISO Certified"],
@@ -206,8 +211,8 @@ const About = () => {
                   whileHover={{ y: -8 }}
                   className="card-premium flex flex-col cursor-default hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)]"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-4">
-                    <partner.icon className="w-6 h-6 text-primary" />
+                  <div className="h-14 flex items-center justify-start mb-4">
+                    <img src={partner.logo} alt={partner.name} className="h-10 max-w-[160px] object-contain" />
                   </div>
                   <h4 className="font-serif text-lg font-bold mb-1">{partner.name}</h4>
                   <p className="text-xs font-semibold tracking-wide uppercase text-primary mb-3">{partner.role}</p>
@@ -241,8 +246,8 @@ const About = () => {
                   className="card-premium flex flex-col cursor-default hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)]"
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-teal-light flex items-center justify-center">
-                      <partner.icon className="w-6 h-6 text-secondary" />
+                    <div className="h-12 flex items-center">
+                      <img src={partner.logo} alt={partner.name} className="h-10 max-w-[160px] object-contain" />
                     </div>
                     <span className="text-[11px] font-bold tracking-wider uppercase px-3 py-1 rounded-full bg-secondary/10 text-secondary">
                       {partner.badge}
