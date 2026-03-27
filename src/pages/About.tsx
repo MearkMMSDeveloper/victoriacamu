@@ -211,8 +211,8 @@ const About = () => {
                   whileHover={{ y: -8 }}
                   className="card-premium flex flex-col cursor-default hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)]"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-4">
-                    <partner.icon className="w-6 h-6 text-primary" />
+                  <div className="h-14 flex items-center justify-start mb-4">
+                    <img src={partner.logo} alt={partner.name} className="h-10 max-w-[160px] object-contain" />
                   </div>
                   <h4 className="font-serif text-lg font-bold mb-1">{partner.name}</h4>
                   <p className="text-xs font-semibold tracking-wide uppercase text-primary mb-3">{partner.role}</p>
@@ -246,8 +246,8 @@ const About = () => {
                   className="card-premium flex flex-col cursor-default hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)]"
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-teal-light flex items-center justify-center">
-                      <partner.icon className="w-6 h-6 text-secondary" />
+                    <div className="h-12 flex items-center">
+                      <img src={partner.logo} alt={partner.name} className="h-10 max-w-[160px] object-contain" />
                     </div>
                     <span className="text-[11px] font-bold tracking-wider uppercase px-3 py-1 rounded-full bg-secondary/10 text-secondary">
                       {partner.badge}
