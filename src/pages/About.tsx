@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Target, Eye, CheckCircle } from "lucide-react";
+import { ArrowRight, Target, Eye, CheckCircle, Building2, GraduationCap, BarChart3, MapPin, Shield } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import heroAbout from "@/assets/hero-about.jpg";
 
@@ -18,6 +18,52 @@ const slideInRight = {
   hidden: { opacity: 0, x: 50 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
 };
+
+const corePartners = [
+  {
+    name: "SRM Technologies",
+    icon: Building2,
+    role: "Implementation & Marketing Partner",
+    description:
+      "SRM Technologies Australia Pty Ltd is a specialized EdTech solutions provider grounded in education through the SRM Group of Institutions — India's largest multidisciplinary private educational conglomerate serving 157,700+ students. SRM Technologies delivers comprehensive managed IT services, EdTech solutions, and digital transformation initiatives for educational institutions globally.",
+    highlights: ["EdTech Solutions Provider", "Managed IT Services", "Digital Transformation"],
+  },
+  {
+    name: "Camu",
+    icon: GraduationCap,
+    role: "Core Technology Platform",
+    description:
+      "Camu is a powerful cloud-based ERP platform purpose-built to transform the learning experience across education institutions worldwide — serving 550+ institutions across 12 countries with a user base exceeding 1 million students. The platform encompasses Learning Management, Outcome Based Education, Virtual Classrooms, and cutting-edge AI capabilities.",
+    highlights: ["550+ Institutions", "12 Countries", "1M+ Students"],
+  },
+  {
+    name: "LeadSquared",
+    icon: BarChart3,
+    role: "CRM & Marketing Automation",
+    description:
+      "LeadSquared empowers organizations to deliver personalised customer interactions at scale. An end-to-end digital engagement platform helping businesses build connected experiences — serving 2,000+ businesses across 40+ countries with 250,000+ users. The platform is GDPR, HIPAA & ISO 27001 compliant.",
+    highlights: ["2,000+ Businesses", "40+ Countries", "Omnichannel CRM"],
+  },
+];
+
+const localPartners = [
+  {
+    name: "Crystal Delta",
+    badge: "Local Partner",
+    icon: Shield,
+    description:
+      "Crystal Delta is a global technology and education solutions company headquartered in Melbourne, Australia, delivering innovative and impactful technology solutions since 2015. With 150+ professionals across five offices in Australia, the United States, and India, Crystal Delta serves 60+ clients through its SoaringEd education portfolio — providing value-driven, secure, and scalable technology solutions.",
+    highlights: ["Melbourne HQ", "150+ Professionals", "60+ Clients"],
+  },
+  {
+    name: "Genix Ventures",
+    badge: "Local Partner",
+    icon: MapPin,
+    description:
+      "Genix Ventures is an Australian technology company headquartered in Melbourne, delivering innovative cloud-based business process automation solutions. Specializing in regulatory compliance, case management, and workflow automation, Genix offers Casegenix — a sophisticated cloud-native case management platform. ISO 9001 and ISO 27001 certified.",
+    highlights: ["Cloud-Native Solutions", "Casegenix Platform", "ISO Certified"],
+  },
+];
 
 const About = () => {
   return (
@@ -129,6 +175,91 @@ const About = () => {
                 <p className="text-foreground font-medium">{item}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="section-padding bg-card">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="section-label">Partners</p>
+            <h2 className="section-title">Our Technology & Implementation Partners</h2>
+            <p className="section-subtitle mx-auto mt-4">
+              A powerful ecosystem of technology and local implementation partners delivering excellence in education.
+            </p>
+          </div>
+
+          {/* Core Technology Partners */}
+          <div className="mb-16">
+            <h3 className="font-serif text-xl font-bold mb-8 text-center tracking-wide uppercase text-muted-foreground">
+              Core Technology Partners
+            </h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              {corePartners.map((partner, i) => (
+                <motion.div
+                  key={partner.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -8 }}
+                  className="card-premium flex flex-col cursor-default hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)]"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-4">
+                    <partner.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h4 className="font-serif text-lg font-bold mb-1">{partner.name}</h4>
+                  <p className="text-xs font-semibold tracking-wide uppercase text-primary mb-3">{partner.role}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">{partner.description}</p>
+                  <div className="flex flex-wrap gap-2 pt-2 border-t border-border">
+                    {partner.highlights.map((h) => (
+                      <span key={h} className="text-[11px] font-medium tracking-wide uppercase px-2.5 py-1 rounded-full bg-accent text-accent-foreground">
+                        {h}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Local Implementation Partners */}
+          <div>
+            <h3 className="font-serif text-xl font-bold mb-8 text-center tracking-wide uppercase text-muted-foreground">
+              Local Implementation Partners
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {localPartners.map((partner, i) => (
+                <motion.div
+                  key={partner.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -8 }}
+                  className="card-premium flex flex-col cursor-default hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)]"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-teal-light flex items-center justify-center">
+                      <partner.icon className="w-6 h-6 text-secondary" />
+                    </div>
+                    <span className="text-[11px] font-bold tracking-wider uppercase px-3 py-1 rounded-full bg-secondary/10 text-secondary">
+                      {partner.badge}
+                    </span>
+                  </div>
+                  <h4 className="font-serif text-lg font-bold mb-3">{partner.name}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">{partner.description}</p>
+                  <div className="flex flex-wrap gap-2 pt-2 border-t border-border">
+                    {partner.highlights.map((h) => (
+                      <span key={h} className="text-[11px] font-medium tracking-wide uppercase px-2.5 py-1 rounded-full bg-accent text-accent-foreground">
+                        {h}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
