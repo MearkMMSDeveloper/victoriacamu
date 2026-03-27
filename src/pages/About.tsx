@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Target, Eye, CheckCircle, Building2, GraduationCap, BarChart3, MapPin, Shield } from "lucide-react";
+import { ArrowRight, Target, Eye, CheckCircle } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import heroAbout from "@/assets/hero-about.jpg";
+import srmLogo from "@/assets/partners/srm.png";
+import camuLogo from "@/assets/partners/camu.jpeg";
+import leadsquaredLogo from "@/assets/partners/leadsquared.webp";
+import crystalDeltaLogo from "@/assets/partners/crystal_delta.png";
+import genixLogo from "@/assets/partners/genix.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
