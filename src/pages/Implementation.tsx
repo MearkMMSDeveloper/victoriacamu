@@ -103,7 +103,7 @@ const Implementation = () => {
         <div className="max-w-7xl mx-auto">
           <p className="section-label">Timeline by School Size</p>
           <h2 className="section-title mb-12">Phased Approach for Every School</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {plans.map((plan, idx) => (
               <motion.div
                 key={plan.size}
@@ -184,7 +184,7 @@ const Implementation = () => {
             Custom pricing tailored to your school's size, modules, and requirements.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {pricingTiers.map((tier, i) => (
               <motion.div
                 key={tier.size}
