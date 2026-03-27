@@ -14,12 +14,13 @@ import {
   Monitor,
   Baby,
   Heart,
-  Lock,
-  Cloud,
-  Globe,
   CheckCircle,
 } from "lucide-react";
 import heroHome1 from "@/assets/hero-home-1.jpg";
+import isoIcon from "@/assets/certs/iso27001.png";
+import soc2Icon from "@/assets/certs/soc2.png";
+import gdprIcon from "@/assets/certs/gdpr.png";
+import st4sIcon from "@/assets/certs/st4s.png";
 
 const features = [
   { icon: Users, title: "Student Information System", desc: "Complete student lifecycle management from enrolment to graduation." },
@@ -39,10 +40,10 @@ const personas = [
 ];
 
 const securityItems = [
-  { icon: Lock, title: "ISO 27001 Certified", desc: "Internationally recognised security management standard." },
-  { icon: Shield, title: "SOC 2 Type II", desc: "Independent audit of security, availability, and privacy." },
-  { icon: Cloud, title: "Australian-Hosted", desc: "All data stored in AWS Sydney & Melbourne data centres." },
-  { icon: Globe, title: "GDPR Aligned", desc: "Highest global standard of data rights and protection." },
+  { img: isoIcon, title: "ISO 27001 Certified", desc: "Internationally recognised security management standard." },
+  { img: soc2Icon, title: "SOC 2 Type II", desc: "Independent audit of security, availability, and privacy." },
+  { img: gdprIcon, title: "GDPR Aligned", desc: "Highest global standard of data rights and protection." },
+  { img: st4sIcon, title: "ST4S Assessed", desc: "Safe & Trusted 4 Schools — child-safe communications standard." },
 ];
 
 const stagger = {
@@ -216,8 +217,8 @@ const Index = () => {
           >
             {securityItems.map((item) => (
               <motion.div key={item.title} variants={fadeUp} className="card-premium text-center">
-                <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-4 mx-auto">
-                  <item.icon className="w-6 h-6 text-primary" />
+                <div className="w-16 h-16 flex items-center justify-center mb-4 mx-auto">
+                  <img src={item.img} alt={item.title} className="h-14 w-14 object-contain" />
                 </div>
                 <h3 className="font-sans text-sm font-bold mb-2 text-foreground">{item.title}</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>

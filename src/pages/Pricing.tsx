@@ -24,14 +24,14 @@ const Pricing = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className={`card-premium relative overflow-hidden ${i === 1 ? "border-primary border-2" : ""}`}
+                className={`card-premium relative overflow-hidden ${size === "Medium" ? "border-primary border-2 scale-[1.03]" : ""}`}
               >
-                {i === 1 && (
+                {size === "Medium" && (
                   <div className="absolute top-0 left-0 right-0 text-center py-1 text-xs font-bold bg-primary text-primary-foreground">
                     Most Popular
                   </div>
                 )}
-                <div className={i === 1 ? "pt-6" : ""}>
+                <div className={size === "Medium" ? "pt-6" : ""}>
                   <p className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-2">{size} School</p>
                   <p className="font-serif text-3xl font-black text-foreground mb-1">Custom</p>
                   <p className="text-sm text-muted-foreground mb-6">
@@ -53,7 +53,7 @@ const Pricing = () => {
                       </div>
                     ))}
                   </div>
-                  <Link to="/contact" className={i === 1 ? "btn-gold w-full text-center" : "btn-outline w-full text-center"}>
+                  <Link to="/contact" className={size === "Medium" ? "btn-gold w-full text-center" : "btn-outline w-full text-center"}>
                     Request Proposal
                   </Link>
                 </div>
