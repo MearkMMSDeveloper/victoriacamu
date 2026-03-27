@@ -18,7 +18,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Sonner />
-      <BrowserRouter basename="/victoriacamu">
+      <BrowserRouter>
         <Layout>
           <Routes>
             <Route path="/" element={<Index />} />
