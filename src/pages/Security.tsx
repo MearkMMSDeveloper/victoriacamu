@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Shield, Lock, Cloud, Globe, Server, RefreshCw, Eye } from "lucide-react";
+import { ArrowRight, Server, RefreshCw, Eye } from "lucide-react";
+import isoIcon from "@/assets/certs/iso27001.png";
+import soc2Icon from "@/assets/certs/soc2.png";
+import gdprIcon from "@/assets/certs/gdpr.png";
+import st4sIcon from "@/assets/certs/st4s.png";
 import PageHero from "@/components/PageHero";
 import heroSecurity from "@/assets/hero-security.jpg";
 
@@ -10,10 +14,10 @@ const fadeUp = {
 };
 
 const certifications = [
-  { icon: Lock, title: "ISO 27001", desc: "Information Security Management — internationally recognised standard for managing information security risks." },
-  { icon: Cloud, title: "SOC 2 Type II", desc: "Service Organisation Control — independent third-party audit of security, availability, and privacy controls." },
-  { icon: Globe, title: "GDPR", desc: "General Data Protection Regulation — GDPR-aligned data handling with highest global standard of data rights." },
-  { icon: Shield, title: "ST4S", desc: "Safe & Trusted 4 Schools — purpose-built school safety standard ensuring child-safe communications and safeguarding." },
+  { img: isoIcon, title: "ISO 27001", desc: "Information Security Management — internationally recognised standard for managing information security risks." },
+  { img: soc2Icon, title: "SOC 2 Type II", desc: "Service Organisation Control — independent third-party audit of security, availability, and privacy controls." },
+  { img: gdprIcon, title: "GDPR", desc: "General Data Protection Regulation — GDPR-aligned data handling with highest global standard of data rights." },
+  { img: st4sIcon, title: "ST4S", desc: "Safe & Trusted 4 Schools — purpose-built school safety standard ensuring child-safe communications and safeguarding." },
 ];
 
 const infrastructure = [
@@ -38,25 +42,22 @@ const Security = () => {
           <p className="section-label">Compliance Certifications</p>
           <h2 className="section-title mb-12">Certified to the Highest Standards</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {certifications.map((cert, i) => {
-              const Icon = cert.icon;
-              return (
-                <motion.div
-                  key={cert.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                  className="card-premium text-center group"
-                >
-                  <div className="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center mb-4 mx-auto group-hover:bg-primary/10 transition-colors">
-                    <Icon className="w-7 h-7 text-primary" />
-                  </div>
-                  <h3 className="font-serif text-lg font-bold mb-2">{cert.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{cert.desc}</p>
-                </motion.div>
-              );
-            })}
+            {certifications.map((cert, i) => (
+              <motion.div
+                key={cert.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="card-premium text-center group"
+              >
+                <div className="w-16 h-16 flex items-center justify-center mb-4 mx-auto">
+                  <img src={cert.img} alt={cert.title} className="h-14 w-14 object-contain" />
+                </div>
+                <h3 className="font-serif text-lg font-bold mb-2">{cert.title}</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">{cert.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
