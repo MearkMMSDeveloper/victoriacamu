@@ -12,8 +12,18 @@ const fadeUp = {
 
 const plans = [
   {
+    size: "Very Small Schools",
+    students: "Below 30 students",
+    timeline: "2 Weeks",
+    steps: [
+      { week: "Week 1", label: "Discovery, Setup & Migration" },
+      { week: "Week 2", label: "Training & Go-Live" },
+      { week: "Weeks 3-6", label: "Hypercare Support" },
+    ],
+  },
+  {
     size: "Small Schools",
-    students: "Under 300 students",
+    students: "Under 200 students",
     timeline: "6 Weeks",
     steps: [
       { week: "Weeks 1-2", label: "Discovery & Setup" },
@@ -25,7 +35,7 @@ const plans = [
   },
   {
     size: "Medium Schools",
-    students: "300 - 800 students",
+    students: "Under 800 students",
     timeline: "9 Weeks",
     steps: [
       { week: "Weeks 1-3", label: "Discovery & Planning" },
@@ -38,7 +48,7 @@ const plans = [
   {
     size: "Large Schools",
     students: "Over 800 students",
-    timeline: "12-16 Weeks",
+    timeline: "12–16 Weeks",
     steps: [
       { week: "Weeks 1-4", label: "Discovery Workshop" },
       { week: "Weeks 5-10", label: "Custom Config & Integration" },
@@ -59,8 +69,9 @@ const included = [
 ];
 
 const pricingTiers = [
-  { size: "Small", students: "Under 300 students", features: ["Full platform access", "Implementation support", "Staff training included", "12-month hypercare", "DE compliance updates"] },
-  { size: "Medium", students: "300-800 students", features: ["Full platform access", "Implementation support", "Staff training included", "12-month hypercare", "DE compliance updates", "Priority support"] },
+  { size: "Very Small", students: "Below 30 students", features: ["Full platform access", "Implementation support", "Staff training included", "Hypercare support", "DE compliance updates"] },
+  { size: "Small", students: "Under 200 students", features: ["Full platform access", "Implementation support", "Staff training included", "12-month hypercare", "DE compliance updates"] },
+  { size: "Medium", students: "Under 800 students", features: ["Full platform access", "Implementation support", "Staff training included", "12-month hypercare", "DE compliance updates", "Priority support"] },
   { size: "Large", students: "800+ students", features: ["Full platform access", "Implementation support", "Staff training included", "12-month hypercare", "DE compliance updates", "Priority support", "Dedicated account manager"] },
 ];
 
@@ -92,7 +103,7 @@ const Implementation = () => {
         <div className="max-w-7xl mx-auto">
           <p className="section-label">Timeline by School Size</p>
           <h2 className="section-title mb-12">Phased Approach for Every School</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {plans.map((plan, idx) => (
               <motion.div
                 key={plan.size}
@@ -173,7 +184,7 @@ const Implementation = () => {
             Custom pricing tailored to your school's size, modules, and requirements.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {pricingTiers.map((tier, i) => (
               <motion.div
                 key={tier.size}

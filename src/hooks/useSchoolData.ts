@@ -32,6 +32,8 @@ function parseCsvRow(row: string): string[] {
 
 function getTimeline(size: string): string {
   switch (size) {
+    case "Very Small":
+      return "2 Weeks";
     case "Small":
       return "6 Weeks";
     case "Medium":
@@ -44,8 +46,9 @@ function getTimeline(size: string): string {
 }
 
 function getSizeFromStudents(count: number): string {
-  if (count < 300) return "Small";
-  if (count <= 800) return "Medium";
+  if (count < 30) return "Very Small";
+  if (count < 200) return "Small";
+  if (count < 800) return "Medium";
   return "Large";
 }
 
