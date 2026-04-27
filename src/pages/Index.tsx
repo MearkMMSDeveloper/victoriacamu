@@ -14,6 +14,7 @@ import {
   Monitor,
   Baby,
   Heart,
+  Landmark,
   CheckCircle,
 } from "lucide-react";
 import heroHome1 from "@/assets/hero-home-1.jpg";
@@ -37,6 +38,7 @@ const personas = [
   { icon: Monitor, title: "Admin Staff", desc: "Single source of truth for records, payments, and workflows." },
   { icon: Baby, title: "Students", desc: "Personalised timetable, progress tracking, and assignment portal." },
   { icon: Heart, title: "Parents", desc: "Real-time notifications, payments, and academic visibility." },
+  { icon: Landmark, title: "State Administrators", desc: "Centralised monitoring, real-time analytics, and system-wide compliance reporting." },
 ];
 
 const securityItems = [
@@ -65,7 +67,7 @@ const Index = () => {
       <section className="bg-accent border-y border-border">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <span className="font-serif text-4xl font-black text-primary">2,300+</span>
+            <span className="font-serif text-4xl font-black text-primary">12,300+</span>
             <div>
               <p className="font-semibold text-foreground text-sm">Schools Addressable</p>
               <p className="text-xs text-muted-foreground">Across Australia & New Zealand</p>
@@ -107,10 +109,9 @@ const Index = () => {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { num: "2,300+", label: "Schools Addressable" },
+                { num: "12,300+", label: "Schools Addressable" },
                 { num: "1", label: "Integrated Solution" },
-                { num: "5", label: "User Personas Served" },
-                { num: "4", label: "DE Categories Covered" },
+                { num: "6", label: "User Personas Served" },
               ].map((stat) => (
                 <motion.div key={stat.label} variants={fadeUp} className="card-premium text-center">
                   <p className="font-serif text-3xl font-black text-primary mb-1">{stat.num}</p>
@@ -175,7 +176,7 @@ const Index = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6"
           >
             {personas.map((p) => (
               <motion.div key={p.title} variants={fadeUp} className="card-premium text-center group">

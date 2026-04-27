@@ -99,10 +99,9 @@ const About = () => {
             </motion.div>
             <motion.div variants={slideInRight} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-2 gap-4">
               {[
-                { num: "2,200+", label: "Schools Addressable" },
+                { num: "12,300+", label: "Schools Addressable" },
                 { num: "1", label: "Integrated Solution" },
-                { num: "5", label: "User Personas Served" },
-                { num: "4", label: "DE Categories Covered" },
+                { num: "6", label: "User Personas Served" },
               ].map((stat) => (
                 <div key={stat.label} className="card-premium text-center">
                   <p className="font-serif text-3xl font-black text-primary mb-1">{stat.num}</p>

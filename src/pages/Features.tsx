@@ -6,7 +6,7 @@ import {
   Calendar, BarChart3, FileText, Bell, Laptop, CheckCircle,
   GraduationCap, Monitor, Baby, Heart, Scale, Link2, TrendingUp,
   PenLine, AlignLeft, MessageCircle, FolderOpen, FileEdit, Smartphone,
-  DollarSign, Star, ClipboardList, Lock,
+  DollarSign, Star, ClipboardList, Lock, Landmark, Activity, FileBarChart, Network,
 } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import heroFeatures from "@/assets/hero-features.jpg";
@@ -131,6 +131,27 @@ const personas: Persona[] = [
       { text: "Student progress reports & grades — anytime access", tag: "Cat 1" },
       { text: "Parent-teacher interview booking & school event RSVP", tag: "Cat 3" },
       { text: "Multi-child management — all kids in one login", tag: "Cat 1" },
+    ],
+  },
+  {
+    id: "state",
+    icon: Landmark,
+    label: "State Education Administrators",
+    color: "hsl(var(--gold))",
+    quote: "I need a clear, system-wide view of how schools are performing — to make policy decisions backed by real-time data, not lagging reports.",
+    needs: [
+      { icon: Network, title: "Centralised district monitoring", desc: "Unified visibility across schools and districts in a single console." },
+      { icon: Activity, title: "Real-time policy analytics", desc: "Live data to inform resource allocation and policy decisions." },
+      { icon: FileBarChart, title: "Compliance reporting at scale", desc: "Aligned with national and state education frameworks out of the box." },
+      { icon: TrendingUp, title: "Outcome & attendance trends", desc: "Track student outcomes, attendance and institutional performance system-wide." },
+    ],
+    capabilities: [
+      { text: "Cross-school performance dashboards", tag: "Gov" },
+      { text: "Aggregated attendance & wellbeing analytics", tag: "Gov" },
+      { text: "Automated statutory & compliance reporting", tag: "Gov" },
+      { text: "Policy-aligned data exports (ACARA, NAPLAN)", tag: "Gov" },
+      { text: "Resource allocation & funding insights", tag: "Gov" },
+      { text: "Long-term cohort & equity trend analysis", tag: "Gov" },
     ],
   },
 ];
