@@ -70,13 +70,6 @@ const included = [
   "Cyber & IT liability insured platform",
 ];
 
-const pricingTiers = [
-  { size: "Very Small", students: "Below 30 students", features: ["Full platform access", "Implementation support", "Staff training included", "Hypercare support", "DE compliance updates"] },
-  { size: "Small", students: "Under 200 students", features: ["Full platform access", "Implementation support", "Staff training included", "12-month hypercare", "DE compliance updates"] },
-  { size: "Medium", students: "Under 800 students", features: ["Full platform access", "Implementation support", "Staff training included", "12-month hypercare", "DE compliance updates", "Priority support"] },
-  { size: "Large", students: "800+ students", features: ["Full platform access", "Implementation support", "Staff training included", "12-month hypercare", "DE compliance updates", "Priority support", "Dedicated account manager"] },
-];
-
 const certifications = [
   { img: isoIcon, title: "ISO 27001", desc: "Information Security Management — internationally recognised standard for managing information security risks." },
   { img: soc2Icon, title: "SOC 2 Type II", desc: "Service Organisation Control — independent third-party audit of security, availability, and privacy controls." },
@@ -93,13 +86,6 @@ const infrastructure = [
 const Implementation = () => {
   return (
     <>
-      <PageHero
-        label="Implementation"
-        title="Simple & Scalable ERP Implementation for Schools"
-        description="Tailored to your school's size and configuration. Minimise disruption and maximise adoption from day one."
-        image={heroImpl}
-      />
-
       {/* Timeline Plans */}
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
