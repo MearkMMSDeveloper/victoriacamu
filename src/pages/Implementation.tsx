@@ -6,8 +6,6 @@ import soc2Icon from "@/assets/certs/soc2.png";
 import gdprIcon from "@/assets/certs/gdpr.png";
 import st4sIcon from "@/assets/certs/st4s.png";
 import SchoolSearch from "@/components/SchoolSearch";
-import PageHero from "@/components/PageHero";
-import heroImpl from "@/assets/hero-implementation.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },

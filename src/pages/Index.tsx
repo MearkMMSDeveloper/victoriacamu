@@ -14,6 +14,7 @@ import {
   Monitor,
   Baby,
   Heart,
+  Landmark,
   CheckCircle,
 } from "lucide-react";
 import heroHome1 from "@/assets/hero-home-1.jpg";
@@ -37,6 +38,7 @@ const personas = [
   { icon: Monitor, title: "Admin Staff", desc: "Single source of truth for records, payments, and workflows." },
   { icon: Baby, title: "Students", desc: "Personalised timetable, progress tracking, and assignment portal." },
   { icon: Heart, title: "Parents", desc: "Real-time notifications, payments, and academic visibility." },
+  { icon: Landmark, title: "State Administrators", desc: "Centralised monitoring, real-time analytics, and system-wide compliance reporting." },
 ];
 
 const securityItems = [
@@ -174,7 +176,7 @@ const Index = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6"
           >
             {personas.map((p) => (
               <motion.div key={p.title} variants={fadeUp} className="card-premium text-center group">
