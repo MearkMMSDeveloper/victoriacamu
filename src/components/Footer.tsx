@@ -9,6 +9,7 @@ const footerLinks = [
       { label: "Home", path: "/" },
       { label: "About", path: "/about" },
       { label: "Features", path: "/features" },
+      { label: "Responsible AI", path: "/responsible-ai" },
       { label: "Implementation", path: "/implementation" },
       { label: "Register Interest", path: "/contact" },
     ],

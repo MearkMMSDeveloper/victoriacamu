@@ -65,7 +65,7 @@ const Index = () => {
       <section className="bg-accent border-y border-border">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <span className="font-serif text-4xl font-black text-primary">2,300+</span>
+            <span className="font-serif text-4xl font-black text-primary">12,300+</span>
             <div>
               <p className="font-semibold text-foreground text-sm">Schools Addressable</p>
               <p className="text-xs text-muted-foreground">Across Australia & New Zealand</p>
@@ -107,10 +107,9 @@ const Index = () => {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { num: "2,300+", label: "Schools Addressable" },
+                { num: "12,300+", label: "Schools Addressable" },
                 { num: "1", label: "Integrated Solution" },
-                { num: "5", label: "User Personas Served" },
-                { num: "4", label: "DE Categories Covered" },
+                { num: "6", label: "User Personas Served" },
               ].map((stat) => (
                 <motion.div key={stat.label} variants={fadeUp} className="card-premium text-center">
                   <p className="font-serif text-3xl font-black text-primary mb-1">{stat.num}</p>
