@@ -381,6 +381,181 @@ const Features = () => {
         </div>
       </section>
 
+      {/* ── TEACHER WORKLOAD ── */}
+      <section className="section-padding bg-card">
+        <div className="max-w-7xl mx-auto">
+          <p className="section-label">For Teachers</p>
+          <h2 className="section-title mb-12">How Camu Reduces Teacher Workload</h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {[
+              { icon: Clock, title: "Reduce administrative burden", desc: "Automates attendance, reporting, and communication." },
+              { icon: Calendar, title: "Stabilise workload and rostering", desc: "Integrated timetabling reduces last-minute pressure." },
+              { icon: Database, title: "Improve access to student data", desc: "Centralised student records for better teaching decisions." },
+              { icon: Zap, title: "Streamline assessment and feedback", desc: "Faster grading with analytics support." },
+              { icon: Heart, title: "Support wellbeing and retention", desc: "Early warning dashboards reduce burnout risk." },
+            ].map((c) => (
+              <motion.div
+                key={c.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                viewport={{ once: true }}
+                className="p-6 rounded-2xl border border-border bg-background hover:border-primary/30 transition-all"
+              >
+                <div className="w-11 h-11 rounded-xl bg-teal-light flex items-center justify-center mb-4">
+                  <c.icon className="w-5 h-5 text-secondary" />
+                </div>
+                <h3 className="font-serif text-lg font-bold mb-2">{c.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <h3 className="font-serif text-2xl font-bold mb-6">Teacher Problem → Solution</h3>
+          <div className="overflow-x-auto rounded-2xl border border-border bg-background">
+            <table className="w-full text-sm">
+              <thead className="bg-muted">
+                <tr className="text-left">
+                  <th className="px-6 py-4 font-bold">Problem</th>
+                  <th className="px-6 py-4 font-bold">Platform Feature</th>
+                  <th className="px-6 py-4 font-bold">Impact</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Excess admin time", "Automated reporting, SSO", "Saves hours weekly"],
+                  ["Unpredictable rostering", "Timetable + relief system", "Reduces overtime"],
+                  ["Fragmented records", "Central SIS", "Better classroom safety"],
+                  ["Slow assessments", "LMS + analytics", "Faster feedback"],
+                  ["High workload", "Workload dashboards", "Better distribution"],
+                ].map((row) => (
+                  <tr key={row[0]} className="border-t border-border hover:bg-muted/50 transition-colors">
+                    <td className="px-6 py-4 font-semibold text-foreground">{row[0]}</td>
+                    <td className="px-6 py-4 text-muted-foreground">{row[1]}</td>
+                    <td className="px-6 py-4 text-secondary font-medium">{row[2]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ── STUDENT SUCCESS ── */}
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto">
+          <p className="section-label">For Students</p>
+          <h2 className="section-title mb-4">Driving Student Success Across Australia &amp; New Zealand</h2>
+          <p className="section-subtitle mb-12">Better data, faster feedback and earlier intervention — designed for ANZ standards.</p>
+
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4 mb-16">
+            {[
+              { icon: Database, title: "Better teaching with unified data" },
+              { icon: FileBarChart, title: "Faster reporting (NAPLAN / ACARA)" },
+              { icon: AlertTriangle, title: "Early risk detection" },
+              { icon: Zap, title: "Faster feedback cycles" },
+              { icon: Target, title: "Alignment with FISO 2.0" },
+            ].map((c) => (
+              <div
+                key={c.title}
+                className="p-5 rounded-2xl border border-border bg-card text-center hover:border-primary/30 transition-all"
+              >
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3 mx-auto">
+                  <c.icon className="w-5 h-5 text-primary" />
+                </div>
+                <p className="text-sm font-semibold text-foreground leading-snug">{c.title}</p>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="font-serif text-2xl font-bold mb-6">Student Pain Point → Impact</h3>
+          <div className="overflow-x-auto rounded-2xl border border-border bg-card">
+            <table className="w-full text-sm">
+              <thead className="bg-muted">
+                <tr className="text-left">
+                  <th className="px-6 py-4 font-bold">Pain Point</th>
+                  <th className="px-6 py-4 font-bold">Feature</th>
+                  <th className="px-6 py-4 font-bold">Impact</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Fragmented records", "SIS + IEPs", "Personalised learning"],
+                  ["Slow feedback", "LMS tools", "Faster improvement"],
+                  ["Late risk detection", "Alerts & analytics", "Reduced dropout"],
+                ].map((row) => (
+                  <tr key={row[0]} className="border-t border-border hover:bg-muted/50 transition-colors">
+                    <td className="px-6 py-4 font-semibold text-foreground">{row[0]}</td>
+                    <td className="px-6 py-4 text-muted-foreground">{row[1]}</td>
+                    <td className="px-6 py-4 text-secondary font-medium">{row[2]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ── ADMIN EFFICIENCY ── */}
+      <section className="section-padding bg-card">
+        <div className="max-w-7xl mx-auto">
+          <p className="section-label">For Administrators</p>
+          <h2 className="section-title mb-12">Operational Efficiency for School Administrators</h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {[
+              { icon: Layers, title: "Centralised system", desc: "Reduces manual work across departments." },
+              { icon: Gauge, title: "Automated reporting", desc: "Cuts compliance risk and human error." },
+              { icon: Calendar, title: "Smart timetabling", desc: "Reduces staffing gaps and overtime." },
+              { icon: Briefcase, title: "Finance & asset tracking", desc: "Improves control and audit readiness." },
+            ].map((c) => (
+              <motion.div
+                key={c.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                viewport={{ once: true }}
+                className="p-6 rounded-2xl border border-border bg-background hover:border-primary/30 transition-all"
+              >
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                  <c.icon className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="font-serif text-lg font-bold mb-2">{c.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <h3 className="font-serif text-2xl font-bold mb-6">Admin Problem → Solution</h3>
+          <div className="overflow-x-auto rounded-2xl border border-border bg-background">
+            <table className="w-full text-sm">
+              <thead className="bg-muted">
+                <tr className="text-left">
+                  <th className="px-6 py-4 font-bold">Problem</th>
+                  <th className="px-6 py-4 font-bold">Feature</th>
+                  <th className="px-6 py-4 font-bold">Impact</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Fragmented records", "Central SIS", "Faster enrolment"],
+                  ["Manual reporting", "Automated exports", "Reduced errors"],
+                  ["Staffing issues", "Integrated rostering", "Cost reduction"],
+                  ["Finance inefficiency", "Workflow system", "Better audit control"],
+                ].map((row) => (
+                  <tr key={row[0]} className="border-t border-border hover:bg-muted/50 transition-colors">
+                    <td className="px-6 py-4 font-semibold text-foreground">{row[0]}</td>
+                    <td className="px-6 py-4 text-muted-foreground">{row[1]}</td>
+                    <td className="px-6 py-4 text-secondary font-medium">{row[2]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding bg-accent text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="section-title mb-4">See All Features in Action</h2>
