@@ -7,6 +7,7 @@ import {
   GraduationCap, Monitor, Baby, Heart, Scale, Link2, TrendingUp,
   PenLine, AlignLeft, MessageCircle, FolderOpen, FileEdit, Smartphone,
   DollarSign, Star, ClipboardList, Lock, Landmark, Activity, FileBarChart, Network,
+  Clock, Database, Zap, AlertTriangle, Target, Gauge, Layers, Briefcase,
 } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import heroFeatures from "@/assets/hero-features.jpg";
