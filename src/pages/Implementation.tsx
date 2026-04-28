@@ -6,6 +6,8 @@ import soc2Icon from "@/assets/certs/soc2.png";
 import gdprIcon from "@/assets/certs/gdpr.png";
 import st4sIcon from "@/assets/certs/st4s.png";
 import SchoolSearch from "@/components/SchoolSearch";
+import PageHero from "@/components/PageHero";
+import heroImplementation from "@/assets/hero-implementation.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -86,6 +88,13 @@ const infrastructure = [
 const Implementation = () => {
   return (
     <>
+      <PageHero
+        label="Implementation"
+        title="Seamless Onboarding for Every School"
+        description="A structured, phased rollout tailored to your school size — from discovery to go-live and beyond, with dedicated hypercare support."
+        image={heroImplementation}
+      />
+
       {/* Timeline Plans */}
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
