@@ -1,5 +1,3 @@
-import videoSrc from "/srm-video.mp4?url";
-
 interface VideoSectionProps {
   label?: string;
   title?: string;
