@@ -10,6 +10,7 @@ import {
   Clock, Database, Zap, AlertTriangle, Target, Gauge, Layers, Briefcase,
 } from "lucide-react";
 import PageHero from "@/components/PageHero";
+import VideoSection from "@/components/VideoSection";
 import heroFeatures from "@/assets/hero-features.jpg";
 
 const fadeUp = {
