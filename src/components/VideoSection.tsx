@@ -17,7 +17,7 @@ const VideoSection = ({
         <p className="section-subtitle mx-auto mb-10">{subtitle}</p>
         <div className="w-full mx-auto px-4" style={{ maxWidth: "1000px" }}>
           <video
-            src="/srm-video.mp4"
+            src="https://mearkwebimages.blob.core.windows.net/camu/SRM%20video.mp4"
             controls
             preload="metadata"
             playsInline
