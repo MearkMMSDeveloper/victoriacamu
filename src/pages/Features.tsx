@@ -10,6 +10,7 @@ import {
   Clock, Database, Zap, AlertTriangle, Target, Gauge, Layers, Briefcase,
 } from "lucide-react";
 import PageHero from "@/components/PageHero";
+import VideoSection from "@/components/VideoSection";
 import heroFeatures from "@/assets/hero-features.jpg";
 
 const fadeUp = {
@@ -342,6 +343,8 @@ const Features = () => {
       </section>
 
       {/* ── FEATURES SECTION (SECOND) ── */}
+      <VideoSection />
+
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
           <p className="section-label">Platform Features</p>

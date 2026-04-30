@@ -1,5 +1,6 @@
 import HeroSlider from "@/components/HeroSlider";
 import SchoolSearch from "@/components/SchoolSearch";
+import VideoSection from "@/components/VideoSection";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -157,6 +158,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Video Section */}
+      <VideoSection />
 
       {/* Personas Section with subtle background */}
       <section className="section-padding relative overflow-hidden">
