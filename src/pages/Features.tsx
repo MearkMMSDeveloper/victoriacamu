@@ -342,6 +342,8 @@ const Features = () => {
       </section>
 
       {/* ── FEATURES SECTION (SECOND) ── */}
+      <VideoSection />
+
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
           <p className="section-label">Platform Features</p>
