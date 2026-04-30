@@ -15,13 +15,18 @@ const VideoSection = ({
         <p className="section-label">{label}</p>
         <h2 className="section-title">{title}</h2>
         <p className="section-subtitle mx-auto mb-10">{subtitle}</p>
-        <div className="relative rounded-2xl overflow-hidden border border-border shadow-[var(--shadow-elevated)] bg-card">
+        <div className="w-full mx-auto px-4" style={{ maxWidth: "1000px" }}>
           <video
             src="/srm-video.mp4"
             controls
             preload="metadata"
             playsInline
-            className="w-full h-auto block"
+            className="w-full h-auto block bg-card"
+            style={{
+              aspectRatio: "16 / 9",
+              borderRadius: "14px",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+            }}
           />
         </div>
       </div>
